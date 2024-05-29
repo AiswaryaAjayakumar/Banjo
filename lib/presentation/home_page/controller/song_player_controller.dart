@@ -4,6 +4,7 @@ import 'package:just_audio/just_audio.dart';
 class SongPlayerController extends GetxController {
   final player = AudioPlayer();
   RxBool isPlaying = false.obs;
+  RxDouble sliderValue = 0.0.obs;
 
   Future<void> playLocalAudio(String url) async {
     await player.setAudioSource(AudioSource.uri(Uri.parse(url)));

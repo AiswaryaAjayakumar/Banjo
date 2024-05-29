@@ -11,7 +11,10 @@ import 'package:music_app/presentation/home_page/controller/song_player_controll
 import 'package:music_app/presentation/home_page/view/home_page.dart';
 
 class SongPageScreen extends StatefulWidget {
-  const SongPageScreen({super.key});
+  const SongPageScreen(
+      {super.key, required this.songName, required this.songArtist});
+  final String songName;
+  final String songArtist;
 
   @override
   State<SongPageScreen> createState() => _SongPageScreenState();
@@ -62,21 +65,36 @@ class _SongPageScreenState extends State<SongPageScreen> {
                   SizedBox(
                     height: 30,
                   ),
-                  Text("The Life of Ram",
-                      style: MytextStyle.customWhiteHeadings),
                   Text(
-                    "Govind Vasantha",
+                    widget.songName,
+                    style: MytextStyle.customWhiteHeadings,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    widget.songArtist,
                     style: MytextStyle.customWhiteHeadings1,
                   ),
                   SizedBox(
                     height: 25,
                   ),
-                  LinearProgressIndicator(
-                    backgroundColor: ColorConstants.customBlack,
-                    value: 9,
-                    borderRadius: BorderRadius.circular(10),
-                    color: ColorConstants.customWhite,
+                  Obx(
+                    () => Slider(
+                      inactiveColor: ColorConstants.customWhite,
+                      activeColor: ColorConstants.customBlack1,
+                      value: songPlayerController.sliderValue.value,
+                      onChanged: (value) {
+                        songPlayerController.sliderValue.value = value;
+                      },
+                      min: 0,
+                      max: 100,
+                    ),
                   ),
+                  // LinearProgressIndicator(
+                  //   backgroundColor: ColorConstants.customBlack,
+                  //   value: 9,
+                  //   borderRadius: BorderRadius.circular(10),
+                  //   color: ColorConstants.customWhite,
+                  // ),
                   // Container(
                   //   height: 3,
                   //   decoration: BoxDecoration(
@@ -142,8 +160,8 @@ class _SongPageScreenState extends State<SongPageScreen> {
             ),
           ),
           Positioned(
-            left: 10,
-            top: 15,
+            // left: 3,
+            top: 6,
             child: CircleAvatar(
               radius: 25,
               backgroundColor: Colors.transparent,
