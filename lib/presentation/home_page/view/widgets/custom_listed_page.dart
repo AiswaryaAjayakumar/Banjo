@@ -1,13 +1,22 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/db.dart';
 import 'package:music_app/global_widgets/selected_song.dart';
+import 'package:music_app/presentation/home_page/view/song_page.dart';
 
 class CustomListedPage extends StatefulWidget {
-  const CustomListedPage({super.key});
+  const CustomListedPage({
+    super.key,
+    required this.songName,
+    required this.onPressed,
+  });
+  final String songName;
+  final VoidCallback onPressed;
 
   @override
   State<CustomListedPage> createState() => _CustomListedPageState();
@@ -21,19 +30,18 @@ class _CustomListedPageState extends State<CustomListedPage> {
         shrinkWrap: true,
         physics: ScrollPhysics(),
         itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                //final player = AudioCache();
-              
+              onTap: widget.onPressed,
+              //  {
 
-               
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SelectedSongScreen(),
-                    ));
-              },
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => SongPageScreen(),
+              //       ));
+              // },
               child: Container(
                 height: MediaQuery.sizeOf(context).height / 12,
+               
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Color.fromARGB(255, 130, 127, 127)),
@@ -62,7 +70,9 @@ class _CustomListedPageState extends State<CustomListedPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                Db.listedSongs[index]["name"],
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                widget.songName,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w500),
                               ),

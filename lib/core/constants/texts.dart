@@ -21,4 +21,10 @@ class MytextStyle {
           fontSize: 25,
           fontWeight: FontWeight.w400,
           color: ColorConstants.customWhite));
+
+  static TextStyle customWhiteHeadings3 = GoogleFonts.nunitoSans(
+      textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+          color: ColorConstants.customWhite));
 }
