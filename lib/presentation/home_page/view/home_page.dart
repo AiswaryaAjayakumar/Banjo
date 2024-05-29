@@ -184,28 +184,27 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 4),
-                                child: Obx(
-                                    () => songDataController.isDeviceSongs.value
-                                        ? Column(
-                                            children: songDataController
-                                                .songList.value
-                                                .map((e) => CustomListedPage(
-                                                      songName: e.title,
-                                                      onPressed: () {
-                                                        songPlayerController
-                                                            .playLocalAudio(
-                                                                e.data);
-                                                        // Get.to(
-                                                        //     () => SongPageScreen());
-                                                      },
-                                                    ))
-                                                .toList(),
-                                          )
-                                        : Column(
-                                            children: [
-                                              //CustomListedPage(),
-                                            ],
-                                          )))
+                                child: Obx(() => songDataController
+                                        .isDeviceSongs.value
+                                    ? Column(
+                                        children: songDataController
+                                            .songList.value
+                                            .map((e) => CustomListedPage(
+                                                  songName: e.title,
+                                                  onPressed: () {
+                                                    songPlayerController
+                                                        .playLocalAudio(e.data);
+                                                    Get.to(
+                                                        () => SongPageScreen());
+                                                  },
+                                                ))
+                                            .toList(),
+                                      )
+                                    : Column(
+                                        children: [
+                                          //CustomListedPage(),
+                                        ],
+                                      )))
                           ]),
                     ),
                   ),

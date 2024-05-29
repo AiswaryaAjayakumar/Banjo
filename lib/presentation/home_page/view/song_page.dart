@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
 import 'package:music_app/global_widgets/bottom_nav.dart';
+import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
 import 'package:music_app/presentation/home_page/view/home_page.dart';
 
 class SongPageScreen extends StatefulWidget {
@@ -16,8 +18,8 @@ class SongPageScreen extends StatefulWidget {
 }
 
 class _SongPageScreenState extends State<SongPageScreen> {
-  bool isClicked = false;
-  int selectedIndex = 0;
+  SongPlayerController songPlayerController = Get.put(SongPlayerController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,18 +101,30 @@ class _SongPageScreenState extends State<SongPageScreen> {
                             onPressed: () {},
                             icon: Icon(Icons.skip_previous,
                                 size: 40, color: ColorConstants.customWhite1)),
-                        InkWell(
-                          onTap: () {
-                            isClicked = false;
-                          },
-                          child: CircleAvatar(
-                              radius: 30,
-                              backgroundColor: ColorConstants.customWhite1,
-                              child: isClicked == true
-                                  ? Icon(Icons.pause,
-                                      color: ColorConstants.customGrey1)
-                                  : Icon(Icons.play_arrow,
-                                      color: ColorConstants.customGrey1)),
+                        Obx(
+                          () => songPlayerController.isPlaying.value
+                              ? InkWell(
+                                  onTap: () {
+                                    songPlayerController.pausePlaying();
+                                  },
+                                  child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor:
+                                          ColorConstants.customWhite1,
+                                      child: Icon(Icons.pause,
+                                          color: ColorConstants.customGrey1)),
+                                )
+                              : InkWell(
+                                  onTap: () {
+                                    songPlayerController.resumePlaying();
+                                  },
+                                  child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor:
+                                          ColorConstants.customWhite1,
+                                      child: Icon(Icons.play_arrow,
+                                          color: ColorConstants.customGrey1)),
+                                ),
                         ),
                         IconButton(
                             onPressed: () {},
