@@ -191,14 +191,18 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                             .songList.value
                                             .map((e) => CustomListedPage(
                                                   songName: e.title,
-                                                
                                                   artist: e.artist!,
                                                   onPressed: () {
+                                                   
                                                     songPlayerController
-                                                        .playLocalAudio(e.data);
+                                                        .playLocalAudio(e);
+                                                   
+                                                    songDataController
+                                                        .currentIndex(e.id);
+                                                  
                                                     Get.to(() => SongPageScreen(
-                                                          songName: e.title,
-                                                          songArtist: e.artist!,
+                                                          // songName: e.title,
+                                                          // songArtist: e.artist!,
                                                         ));
                                                   },
                                                 ))

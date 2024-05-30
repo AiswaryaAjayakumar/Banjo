@@ -2,21 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
-import 'package:music_app/global_widgets/bottom_nav.dart';
+import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
-import 'package:music_app/presentation/home_page/view/home_page.dart';
 
 class SongPageScreen extends StatefulWidget {
-  const SongPageScreen(
-      {super.key, required this.songName, required this.songArtist});
-  final String songName;
-  final String songArtist;
+  const SongPageScreen({
+    super.key,
+  });
 
   @override
   State<SongPageScreen> createState() => _SongPageScreenState();
@@ -25,6 +21,8 @@ class SongPageScreen extends StatefulWidget {
 class _SongPageScreenState extends State<SongPageScreen>
     with SingleTickerProviderStateMixin {
   SongPlayerController songPlayerController = Get.put(SongPlayerController());
+  SongDataController songDataController = Get.put(SongDataController());
+
   late AnimationController aniController;
   late LottieComposition lotComposition;
 
@@ -41,11 +39,11 @@ class _SongPageScreenState extends State<SongPageScreen>
     });
   }
 
-  @override
-  void dispose() {
-    aniController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   aniController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,14 +89,18 @@ class _SongPageScreenState extends State<SongPageScreen>
                   SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    widget.songName,
-                    style: MytextStyle.customWhiteHeadings,
-                    overflow: TextOverflow.ellipsis,
+                  Obx(
+                    () => Text(
+                      songPlayerController.songTitle.value,
+                      style: MytextStyle.customWhiteHeadings,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  Text(
-                    widget.songArtist,
-                    style: MytextStyle.customWhiteHeadings1,
+                  Obx(
+                    () => Text(
+                      songPlayerController.songArtist.value,
+                      style: MytextStyle.customWhiteHeadings1,
+                    ),
                   ),
                   SizedBox(
                     height: 25,
@@ -173,7 +175,9 @@ class _SongPageScreenState extends State<SongPageScreen>
                                 ),
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              songDataController.nextSongPlay();
+                            },
                             icon: Icon(Icons.skip_next,
                                 size: 40, color: ColorConstants.customWhite1)),
                         IconButton(
