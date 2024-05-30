@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
 import 'package:music_app/global_widgets/bottom_nav.dart';
@@ -20,8 +22,30 @@ class SongPageScreen extends StatefulWidget {
   State<SongPageScreen> createState() => _SongPageScreenState();
 }
 
-class _SongPageScreenState extends State<SongPageScreen> {
+class _SongPageScreenState extends State<SongPageScreen>
+    with SingleTickerProviderStateMixin {
   SongPlayerController songPlayerController = Get.put(SongPlayerController());
+  late AnimationController aniController;
+  late LottieComposition lotComposition;
+
+  @override
+  void initState() {
+    super.initState();
+    aniController = AnimationController(vsync: this);
+    songPlayerController.isPlaying.listen((isPlaying) {
+      if (isPlaying) {
+        aniController.forward();
+      } else {
+        aniController.stop();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    aniController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +80,13 @@ class _SongPageScreenState extends State<SongPageScreen> {
                     height: MediaQuery.sizeOf(context).height / 1.8,
                     width: MediaQuery.sizeOf(context).width,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://m.media-amazon.com/images/M/MV5BYzY0OTVhZTMtYjAzNy00ODYzLTkxMzUtZmY2MWRlNTE1N2UyXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg"),
-                            fit: BoxFit.cover)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Lottie.asset(controller: aniController,
+                        onLoaded: (composition) {
+                      aniController.duration = composition.duration;
+                      aniController.repeat();
+                    }, 'assets/images/Animation - 1717049623734.json'),
                   ),
                   SizedBox(
                     height: 30,
@@ -124,6 +150,7 @@ class _SongPageScreenState extends State<SongPageScreen> {
                               ? InkWell(
                                   onTap: () {
                                     songPlayerController.pausePlaying();
+                                    aniController.stop();
                                   },
                                   child: CircleAvatar(
                                       radius: 30,
@@ -135,6 +162,7 @@ class _SongPageScreenState extends State<SongPageScreen> {
                               : InkWell(
                                   onTap: () {
                                     songPlayerController.resumePlaying();
+                                    aniController.repeat();
                                   },
                                   child: CircleAvatar(
                                       radius: 30,
@@ -168,11 +196,12 @@ class _SongPageScreenState extends State<SongPageScreen> {
               child: IconButton(
                   color: ColorConstants.customWhite,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BottomNav(),
-                        ));
+                    Get.back();
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => BottomNav(),
+                    //     ));
                   },
                   icon: Icon(
                     Icons.arrow_back,

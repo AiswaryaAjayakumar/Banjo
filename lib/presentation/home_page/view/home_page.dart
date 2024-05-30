@@ -15,7 +15,7 @@ import 'package:music_app/presentation/home_page/view/widgets/custom_listed_page
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
-  
+
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
 }
@@ -191,13 +191,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                             .songList.value
                                             .map((e) => CustomListedPage(
                                                   songName: e.title,
+                                                
+                                                  artist: e.artist!,
                                                   onPressed: () {
                                                     songPlayerController
                                                         .playLocalAudio(e.data);
-                                                    Get.to(
-                                                        () => SongPageScreen(
+                                                    Get.to(() => SongPageScreen(
                                                           songName: e.title,
-                                                          songArtist:e.artist! ,
+                                                          songArtist: e.artist!,
                                                         ));
                                                   },
                                                 ))

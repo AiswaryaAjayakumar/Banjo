@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/db.dart';
@@ -11,9 +16,13 @@ class CustomListedPage extends StatefulWidget {
     super.key,
     required this.songName,
     required this.onPressed,
+    // required this.img,
+    required this.artist,
   });
 
   final String songName;
+  // final String img;
+  final String artist;
   final VoidCallback onPressed;
 
   @override
@@ -48,13 +57,11 @@ class _CustomListedPageState extends State<CustomListedPage> {
                             height: 50,
                             width: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image:
-                                    NetworkImage(Db.listedSongs[index]["img"]),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/Iphone.jpeg"),
+                                    fit: BoxFit.cover)),
                           ),
                           SizedBox(width: 18),
                           Column(
@@ -62,8 +69,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width *
-                                    0.5, // Adjust width as needed
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 child: Text(
                                   widget.songName,
                                   overflow: TextOverflow.ellipsis,
@@ -74,11 +80,15 @@ class _CustomListedPageState extends State<CustomListedPage> {
                                   ),
                                 ),
                               ),
-                              Text(
-                                Db.listedSongs[index]["artist"],
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: ColorConstants.customGrey1,
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child: Text(
+                                  overflow: TextOverflow.ellipsis,
+                                  widget.artist,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: ColorConstants.customGrey1,
+                                  ),
                                 ),
                               ),
                             ],
@@ -92,6 +102,6 @@ class _CustomListedPageState extends State<CustomListedPage> {
               ),
             ),
         separatorBuilder: (context, index) => SizedBox(height: 10),
-        itemCount: songDataController.songList.length);
+        itemCount: 1);
   }
 }
