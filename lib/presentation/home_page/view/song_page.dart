@@ -144,7 +144,9 @@ class _SongPageScreenState extends State<SongPageScreen>
                               color: ColorConstants.customWhite1,
                             )),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              songDataController.previousSongPlay();
+                            },
                             icon: Icon(Icons.skip_previous,
                                 size: 40, color: ColorConstants.customWhite1)),
                         Obx(
