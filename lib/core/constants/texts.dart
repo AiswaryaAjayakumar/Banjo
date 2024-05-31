@@ -10,6 +10,7 @@ class MytextStyle {
           fontSize: 28,
           fontWeight: FontWeight.bold,
           color: ColorConstants.customWhite));
+
   static TextStyle customWhiteHeadings1 = GoogleFonts.poppins(
       textStyle: TextStyle(
           fontSize: 15,
@@ -27,4 +28,16 @@ class MytextStyle {
           fontSize: 20,
           fontWeight: FontWeight.w400,
           color: ColorConstants.customWhite));
+
+  static TextStyle customWhiteHeadings4 = GoogleFonts.bitter(
+      textStyle: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.customWhite));
+
+  static TextStyle customWhiteHeadings5 = GoogleFonts.poppins(
+      textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: ColorConstants.customGrey3));
 }

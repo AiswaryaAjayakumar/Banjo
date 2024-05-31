@@ -53,39 +53,51 @@ class _SongPageScreenState extends State<SongPageScreen>
           Container(
             height: MediaQuery.sizeOf(context).height,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                  ColorConstants.gradientColor1,
-                  ColorConstants.gradientColor2,
-                  ColorConstants.gradientColor1,
-                  ColorConstants.gradientColor3,
-                  ColorConstants.gradientColor2,
-                  ColorConstants.gradientColor4,
-                  ColorConstants.gradientColor2,
-                  ColorConstants.gradientColor3,
-                  ColorConstants.gradientColor1,
-                  ColorConstants.gradientColor2,
-                ])),
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://i.pinimg.com/564x/3b/52/46/3b524657f01fc92110efa4317d85a979.jpg"),
+                    fit: BoxFit.cover)
+                // gradient: LinearGradient(
+                //     begin: Alignment.topRight,
+                //     end: Alignment.bottomLeft,
+                //     colors: [
+                //   ColorConstants.gradientColor1,
+                //   ColorConstants.gradientColor2,
+                //   ColorConstants.gradientColor1,
+                //   ColorConstants.gradientColor3,
+                //   ColorConstants.gradientColor2,
+                //   ColorConstants.gradientColor4,
+                //   ColorConstants.gradientColor2,
+                //   ColorConstants.gradientColor3,
+                //   ColorConstants.gradientColor1,
+                //   ColorConstants.gradientColor2,
+                // ])
+                ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: MediaQuery.sizeOf(context).height / 1.8,
-                    width: MediaQuery.sizeOf(context).width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                  // Container(
+                  //   height: 400,
+                  //   width: MediaQuery.sizeOf(context).width,
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(10),
+                  //   ),
+                  Center(
+                    child: Lottie.asset(
+                      filterQuality: FilterQuality.high,
+                      'assets/images/Animation - 1717130617436 (1).json',
+                      fit: BoxFit.fill,
+                      controller: aniController,
+                      onLoaded: (composition) {
+                        aniController.duration = composition.duration;
+                        aniController.repeat();
+                      },
                     ),
-                    child: Lottie.asset(controller: aniController,
-                        onLoaded: (composition) {
-                      aniController.duration = composition.duration;
-                      aniController.repeat();
-                    }, 'assets/images/Animation - 1717049623734.json'),
                   ),
+
                   SizedBox(
                     height: 30,
                   ),
@@ -106,15 +118,32 @@ class _SongPageScreenState extends State<SongPageScreen>
                     height: 25,
                   ),
                   Obx(
-                    () => Slider(
-                      inactiveColor: ColorConstants.customWhite,
-                      activeColor: ColorConstants.customBlack1,
-                      value: songPlayerController.sliderValue.value,
-                      onChanged: (value) {
-                        songPlayerController.sliderValue.value = value;
-                      },
-                      min: 0,
-                      max: 100,
+                    () => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          songPlayerController.currentTime.value,
+                          style: TextStyle(color: ColorConstants.customWhite),
+                        ),
+                        Slider(
+                          inactiveColor: ColorConstants.customWhite,
+                          activeColor: ColorConstants.customBlack1,
+                          value: songPlayerController.sliderValue.value.clamp(
+                              0.0, songPlayerController.sliderValue.value),
+                          onChanged: (value) {
+                            songPlayerController.sliderValue.value = value;
+                            Duration songPosition =
+                                Duration(seconds: value.toInt());
+                            songPlayerController.sliderChange(songPosition);
+                          },
+                          min: 0,
+                          max: songPlayerController.sliderMaxValue.value,
+                        ),
+                        Text(
+                          songPlayerController.totalTime.value,
+                          style: TextStyle(color: ColorConstants.customWhite),
+                        ),
+                      ],
                     ),
                   ),
                   // LinearProgressIndicator(
@@ -183,9 +212,15 @@ class _SongPageScreenState extends State<SongPageScreen>
                             icon: Icon(Icons.skip_next,
                                 size: 40, color: ColorConstants.customWhite1)),
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.favorite_outline,
-                                size: 40, color: ColorConstants.customWhite1))
+                            onPressed: () {
+                              songPlayerController.isRepeat.value = true;
+                              songPlayerController.repeatSong();
+                            },
+                            icon: Obx(() => Icon(Icons.refresh_outlined,
+                                size: 40,
+                                color: songPlayerController.isRepeat.value
+                                    ? ColorConstants.containerOrange
+                                    : ColorConstants.customWhite1)))
                       ],
                     ),
                   )

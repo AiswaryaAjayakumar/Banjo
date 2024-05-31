@@ -27,7 +27,7 @@ class SongDataController extends GetxController {
         orderType: OrderType.ASC_OR_SMALLER,
         sortType: null,
         uriType: UriType.EXTERNAL);
-    print(songList.value);
+    // print(songList.value);
   }
 
   Future<void> storagePermission() async {

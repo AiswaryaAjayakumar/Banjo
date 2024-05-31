@@ -53,7 +53,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         body: Stack(
       children: [
         Image.network(
-          'https://images.pexels.com/photos/18573074/pexels-photo-18573074/free-photo-of-white-wire-earphones-on-black.jpeg?auto=compress&cs=tinysrgb&w=800',
+          'https://i.pinimg.com/564x/3b/52/46/3b524657f01fc92110efa4317d85a979.jpg',
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           child: ClipRect(
             // Clip widget to contain the blur to one widget
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3), // The filter
+              filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7), // The filter
               child: SingleChildScrollView(
                 child: Padding(
                   padding:
@@ -85,8 +85,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               // width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color:
-                                      const Color.fromARGB(255, 145, 143, 143)),
+                                  color: ColorConstants.containerOrange),
                               child: Row(
                                 children: [
                                   Container(
@@ -133,9 +132,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               fontWeight: FontWeight.w400,
                                               color: songDataController
                                                       .isDeviceSongs.value
-                                                  ? ColorConstants.customGrey
-                                                  : ColorConstants
-                                                      .customWhite)),
+                                                  ? ColorConstants.customWhite
+                                                  : ColorConstants.homeText)),
                                     ),
                                   ),
                                   TextButton(
@@ -151,9 +149,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               fontWeight: FontWeight.w400,
                                               color: songDataController
                                                       .isDeviceSongs.value
-                                                  ? ColorConstants.customWhite
+                                                  ? Color.fromARGB(
+                                                      255, 27, 236, 229)
                                                   : ColorConstants
-                                                      .customGrey3)),
+                                                      .customWhite)),
                                     ),
                                   )
                                 ],
@@ -184,35 +183,34 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 4),
-                                child: Obx(() => songDataController
-                                        .isDeviceSongs.value
-                                    ? Column(
-                                        children: songDataController
-                                            .songList.value
-                                            .map((e) => CustomListedPage(
-                                                  songName: e.title,
-                                                  artist: e.artist!,
-                                                  onPressed: () {
-                                                   
-                                                    songPlayerController
-                                                        .playLocalAudio(e);
-                                                   
-                                                    songDataController
-                                                        .currentIndex(e.id);
-                                                  
-                                                    Get.to(() => SongPageScreen(
-                                                          // songName: e.title,
-                                                          // songArtist: e.artist!,
-                                                        ));
-                                                  },
-                                                ))
-                                            .toList(),
-                                      )
-                                    : Column(
-                                        children: [
-                                          //CustomListedPage(),
-                                        ],
-                                      )))
+                                child: Obx(
+                                    () => songDataController.isDeviceSongs.value
+                                        ? Column(
+                                            children: songDataController
+                                                .songList.value
+                                                .map((e) => CustomListedPage(
+                                                      songName: e.title,
+                                                      artist: e.artist!,
+                                                      onPressed: () {
+                                                        songPlayerController
+                                                            .playLocalAudio(e);
+
+                                                        songDataController
+                                                            .currentIndex(e.id);
+
+                                                        Get.to(() => SongPageScreen(
+                                                            // songName: e.title,
+                                                            // songArtist: e.artist!,
+                                                            ));
+                                                      },
+                                                    ))
+                                                .toList(),
+                                          )
+                                        : Column(
+                                            children: [
+                                              //CustomListedPage(),
+                                            ],
+                                          )))
                           ]),
                     ),
                   ),
