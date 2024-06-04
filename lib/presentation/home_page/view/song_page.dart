@@ -57,21 +57,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                     image: NetworkImage(
                         "https://i.pinimg.com/564x/3b/52/46/3b524657f01fc92110efa4317d85a979.jpg"),
                     fit: BoxFit.cover)
-                // gradient: LinearGradient(
-                //     begin: Alignment.topRight,
-                //     end: Alignment.bottomLeft,
-                //     colors: [
-                //   ColorConstants.gradientColor1,
-                //   ColorConstants.gradientColor2,
-                //   ColorConstants.gradientColor1,
-                //   ColorConstants.gradientColor3,
-                //   ColorConstants.gradientColor2,
-                //   ColorConstants.gradientColor4,
-                //   ColorConstants.gradientColor2,
-                //   ColorConstants.gradientColor3,
-                //   ColorConstants.gradientColor1,
-                //   ColorConstants.gradientColor2,
-                // ])
+            
                 ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -213,8 +199,8 @@ class _SongPageScreenState extends State<SongPageScreen>
                                 size: 40, color: ColorConstants.customWhite1)),
                         IconButton(
                             onPressed: () {
-                              songPlayerController.isRepeat.value = true;
-                              songPlayerController.repeatSong();
+                              //songPlayerController.isRepeat.value = true;
+                              // songPlayerController.repeatSong();
                             },
                             icon: Obx(() => Icon(Icons.refresh_outlined,
                                 size: 40,

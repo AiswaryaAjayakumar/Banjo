@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:music_app/core/constants/color.dart';
 
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
+import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
 
 class CustomListedPage extends StatefulWidget {
   const CustomListedPage({

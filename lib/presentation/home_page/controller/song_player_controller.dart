@@ -24,15 +24,15 @@ class SongPlayerController extends GetxController {
     isPlaying.value = true;
   }
 
-  Future<void> repeatSong() async {
-    if (isRepeat.value) {
-      await player.setLoopMode(LoopMode.off);
-    } else {
-      await player.setLoopMode(LoopMode.one);
-    }
+  // Future<void> repeatSong() async {
+  //   if (isRepeat.value) {
+  //     await player.setLoopMode(LoopMode.off);
+  //   } else {
+  //     await player.setLoopMode(LoopMode.one);
+  //   }
 
-    isRepeat.value = !isRepeat.value;
-  }
+  //   isRepeat.value = !isRepeat.value;
+  // }
 
   Future<void> resumePlaying() async {
     isPlaying.value = true;

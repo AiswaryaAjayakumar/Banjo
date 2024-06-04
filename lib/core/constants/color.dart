@@ -15,10 +15,4 @@ class ColorConstants {
   static Color containerOrange = Color.fromARGB(204, 196, 171, 145);
   static Color homeText = Color.fromARGB(255, 27, 236, 229);
 
-  static Color customBlue = Colors.blue;
-
-  static Color gradientColor1 = Color.fromARGB(255, 36, 33, 33);
-  static Color gradientColor2 = const Color.fromARGB(255, 159, 157, 157);
-  static Color gradientColor3 = const Color.fromARGB(255, 88, 83, 83);
-  static Color gradientColor4 = Color.fromARGB(255, 141, 134, 134);
 }
