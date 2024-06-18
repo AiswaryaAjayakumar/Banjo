@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, invalid_use_of_protected_member
+// ignore_for_file: avoid_print, invalid_use_of_protected_member, avoid_function_literals_in_foreach_calls
 
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -27,7 +27,7 @@ class SongDataController extends GetxController {
         orderType: OrderType.ASC_OR_SMALLER,
         sortType: null,
         uriType: UriType.EXTERNAL);
-    // print(songList.value);
+    isDeviceSongs.value = songList.isNotEmpty;
   }
 
   Future<void> storagePermission() async {
@@ -53,23 +53,21 @@ class SongDataController extends GetxController {
       }
       index++;
     });
-    print(songId);
   }
 
   void nextSongPlay() {
-    int len = songList.length;
-    currentSongIndex.value = currentSongIndex.value + 1;
-
-    if (currentSongIndex.value < len) {
+    if (currentSongIndex.value < songList.length - 1) {
+      currentSongIndex.value++;
       SongModel next = songList[currentSongIndex.value];
       songPlayerController.playLocalAudio(next);
     }
   }
 
   void previousSongPlay() {
-    //int len = songList.length;
-    currentSongIndex.value = currentSongIndex.value - 1;
-    SongModel previous = songList[currentSongIndex.value];
-    songPlayerController.playLocalAudio(previous);
+    if (currentSongIndex.value > 0) {
+      currentSongIndex.value--;
+      SongModel previous = songList[currentSongIndex.value];
+      songPlayerController.playLocalAudio(previous);
+    }
   }
 }

@@ -56,9 +56,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                 image: DecorationImage(
                     image: NetworkImage(
                         "https://i.pinimg.com/564x/3b/52/46/3b524657f01fc92110efa4317d85a979.jpg"),
-                    fit: BoxFit.cover)
-            
-                ),
+                    fit: BoxFit.cover)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -152,12 +150,16 @@ class _SongPageScreenState extends State<SongPageScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              songPlayerController.shuffledSong();
+                            },
                             icon: Icon(
                               Icons.shuffle,
                               size: 40,
-                              color: ColorConstants.customWhite1,
-                            )),
+                              color: songPlayerController.isShuffled.value
+                                    ? Colors.orange
+                                    : ColorConstants.customWhite1),
+                            ),
                         IconButton(
                             onPressed: () {
                               songDataController.previousSongPlay();
@@ -199,13 +201,12 @@ class _SongPageScreenState extends State<SongPageScreen>
                                 size: 40, color: ColorConstants.customWhite1)),
                         IconButton(
                             onPressed: () {
-                              //songPlayerController.isRepeat.value = true;
-                              // songPlayerController.repeatSong();
+                              songPlayerController.repeatSong();
                             },
                             icon: Obx(() => Icon(Icons.refresh_outlined,
                                 size: 40,
                                 color: songPlayerController.isRepeat.value
-                                    ? ColorConstants.containerOrange
+                                    ? Colors.orange
                                     : ColorConstants.customWhite1)))
                       ],
                     ),
