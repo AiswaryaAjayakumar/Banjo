@@ -20,6 +20,7 @@ class SongPageScreen extends StatefulWidget {
 
 class _SongPageScreenState extends State<SongPageScreen>
     with SingleTickerProviderStateMixin {
+  int currentIndex = 0;
   SongPlayerController songPlayerController = Get.put(SongPlayerController());
   SongDataController songDataController = Get.put(SongDataController());
 
@@ -150,16 +151,18 @@ class _SongPageScreenState extends State<SongPageScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: () {
-                              songPlayerController.shuffledSong();
-                            },
-                            icon: Icon(
-                              Icons.shuffle,
-                              size: 40,
-                              color: songPlayerController.isShuffled.value
-                                    ? Colors.orange
-                                    : ColorConstants.customWhite1),
-                            ),
+                          onPressed: () {
+                            songPlayerController.isFav.value =
+                                !songPlayerController.isFav.value;
+                            setState(() {});
+                            // songPlayerController.shuffledSong();
+                          },
+                          icon: Obx(() => songPlayerController.isFav.value
+                              ? Icon(Icons.favorite_outline,
+                                  size: 40, color: ColorConstants.customWhite1)
+                              : Icon(Icons.favorite,
+                                  size: 40, color: Colors.orange)),
+                        ),
                         IconButton(
                             onPressed: () {
                               songDataController.previousSongPlay();

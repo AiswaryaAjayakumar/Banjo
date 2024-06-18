@@ -3,6 +3,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
@@ -14,6 +15,7 @@ class SongPlayerController extends GetxController {
   RxString songArtist = "".obs;
   RxBool isRepeat = false.obs;
   RxBool isShuffled = false.obs;
+  RxBool isFav = false.obs;
   RxString totalTime = "0".obs;
   RxString currentTime = "0".obs;
 
@@ -28,7 +30,7 @@ class SongPlayerController extends GetxController {
 
   Future<void> repeatSong() async {
     if (isRepeat.value) {
-      await player.setLoopMode(LoopMode.off);
+      await player.setLoopMode(LoopMode.all);
     } else {
       await player.setLoopMode(LoopMode.one);
     }
