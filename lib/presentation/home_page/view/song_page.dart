@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
+import 'package:music_app/presentation/hero_widget_page/view/hero_widget_screen.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
+import 'package:music_app/presentation/home_page/view/home_page.dart';
 
 class SongPageScreen extends StatefulWidget {
   const SongPageScreen({
@@ -131,18 +133,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                       ],
                     ),
                   ),
-                  // LinearProgressIndicator(
-                  //   backgroundColor: ColorConstants.customBlack,
-                  //   value: 9,
-                  //   borderRadius: BorderRadius.circular(10),
-                  //   color: ColorConstants.customWhite,
-                  // ),
-                  // Container(
-                  //   height: 3,
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(5),
-                  //       color: ColorConstants.customWhite),
-                  // ),
+
                   SizedBox(
                     height: 20,
                   ),
@@ -154,14 +145,14 @@ class _SongPageScreenState extends State<SongPageScreen>
                           onPressed: () {
                             songPlayerController.isFav.value =
                                 !songPlayerController.isFav.value;
-                            setState(() {});
                             // songPlayerController.shuffledSong();
                           },
                           icon: Obx(() => songPlayerController.isFav.value
-                              ? Icon(Icons.favorite_outline,
-                                  size: 40, color: ColorConstants.customWhite1)
+                              ? Icon(Icons.favorite,
+                                  size: 40, color: Colors.orange)
                               : Icon(Icons.favorite,
-                                  size: 40, color: Colors.orange)),
+                                  size: 40,
+                                  color: ColorConstants.customWhite1)),
                         ),
                         IconButton(
                             onPressed: () {
@@ -227,16 +218,23 @@ class _SongPageScreenState extends State<SongPageScreen>
               child: IconButton(
                   color: ColorConstants.customWhite,
                   onPressed: () {
-                    Get.back();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePageScreen(),
+                        ));
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
                     //       builder: (context) => BottomNav(),
                     //     ));
                   },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: 30,
+                  icon: Hero(
+                    tag: "myImage",
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                    ),
                   )),
             ),
           ),

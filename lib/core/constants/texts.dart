@@ -40,4 +40,16 @@ class MytextStyle {
           fontSize: 20,
           fontWeight: FontWeight.w600,
           color: ColorConstants.customGrey3));
+
+  static TextStyle customWhiteHeadings6 = GoogleFonts.patuaOne(
+      textStyle: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.customWhite));
+
+  static TextStyle customWhiteHeadings7 = GoogleFonts.patuaOne(
+      textStyle: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.customWhite));
 }

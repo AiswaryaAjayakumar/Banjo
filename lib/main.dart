@@ -1,15 +1,17 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
-import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:music_app/presentation/splash_screen/view/splash_screen.dart';
 
-void main() {
-  Get.put(SongPlayerController());
-  Get.put(SongDataController());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  var box = await Hive.openBox("fav");
   runApp(MyMusic());
 }
 

@@ -1,9 +1,6 @@
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:get/get_rx/get_rx.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
+import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
@@ -14,7 +11,7 @@ class SongPlayerController extends GetxController {
   RxString songTitle = "".obs;
   RxString songArtist = "".obs;
   RxBool isRepeat = false.obs;
-  RxBool isShuffled = false.obs;
+  //RxBool isShuffled = false.obs;
   RxBool isFav = false.obs;
   RxString totalTime = "0".obs;
   RxString currentTime = "0".obs;
@@ -38,14 +35,14 @@ class SongPlayerController extends GetxController {
     isRepeat.value = !isRepeat.value;
   }
 
-  Future<void> shuffledSong() async {
-    if (isShuffled.value) {
-      await player.setShuffleModeEnabled(false);
-    } else {
-      await player.setShuffleModeEnabled(true);
-    }
-    isShuffled.value = !isShuffled.value;
-  }
+  // Future<void> shuffledSong() async {
+  //   if (isShuffled.value) {
+  //     await player.setShuffleModeEnabled(false);
+  //   } else {
+  //     await player.setShuffleModeEnabled(true);
+  //   }
+  //   isShuffled.value = !isShuffled.value;
+  // }
 
   Future<void> resumePlaying() async {
     isPlaying.value = true;
@@ -74,5 +71,19 @@ class SongPlayerController extends GetxController {
 
   void sliderChange(Duration position) {
     player.seek(position);
+  }
+
+  var myBox = Hive.box('fav');
+  void addFav({
+    required String title,
+    required String imgUrl,
+    required String author,
+  }) {
+    myBox.add({
+      "title": title,
+      "img": imgUrl,
+      "price": author,
+    });
+    
   }
 }
