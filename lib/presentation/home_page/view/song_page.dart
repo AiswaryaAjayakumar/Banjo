@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
-import 'package:music_app/presentation/hero_widget_page/view/hero_widget_screen.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
 import 'package:music_app/presentation/home_page/view/home_page.dart';

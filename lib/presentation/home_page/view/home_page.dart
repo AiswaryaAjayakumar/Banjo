@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, invalid_use_of_protected_member
 
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -126,25 +125,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                       TextButton(
                                         onPressed: () {
                                           songDataController
-                                              .isDeviceSongs.value = false;
-                                        },
-                                        child: Text(
-                                          "Cloud Songs",
-                                          style: GoogleFonts.nunitoSans(
-                                              textStyle: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: songDataController
-                                                          .isDeviceSongs.value
-                                                      ? ColorConstants
-                                                          .customWhite
-                                                      : ColorConstants
-                                                          .homeText)),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          songDataController
                                               .isDeviceSongs.value = true;
                                         },
                                         child: Text(
@@ -160,7 +140,26 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                       : ColorConstants
                                                           .customWhite)),
                                         ),
-                                      )
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          songDataController
+                                              .isDeviceSongs.value = false;
+                                        },
+                                        child: Text(
+                                          "Favourites",
+                                          style: GoogleFonts.nunitoSans(
+                                              textStyle: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: songDataController
+                                                          .isDeviceSongs.value
+                                                      ? ColorConstants
+                                                          .customWhite
+                                                      : ColorConstants
+                                                          .homeText)),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

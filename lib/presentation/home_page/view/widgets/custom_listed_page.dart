@@ -66,7 +66,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.7,
                                 child: Text(
                                   widget.songName,
                                   overflow: TextOverflow.ellipsis,
@@ -78,7 +78,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
+                                width: MediaQuery.of(context).size.width * 0.7,
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
                                   widget.artist,
@@ -92,13 +92,13 @@ class _CustomListedPageState extends State<CustomListedPage> {
                           ),
                         ],
                       ),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+                      // IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
                     ],
                   ),
                 ),
               ),
             ),
         separatorBuilder: (context, index) => SizedBox(height: 10),
-        itemCount: 1);
+        itemCount: songDataController.songList.length);
   }
 }

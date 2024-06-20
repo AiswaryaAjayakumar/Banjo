@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
@@ -16,6 +18,17 @@ class SongPlayerController extends GetxController {
   RxString totalTime = "0".obs;
   RxString currentTime = "0".obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    player.playerStateStream.listen((state) {
+      if (state.processingState == ProcessingState.completed) {
+        SongDataController songDataController = Get.find<SongDataController>();
+        songDataController.nextSongPlay();
+      }
+    });
+  }
+
   Future<void> playLocalAudio(SongModel song) async {
     songTitle.value = song.title;
     songArtist.value = song.artist!;
@@ -27,7 +40,7 @@ class SongPlayerController extends GetxController {
 
   Future<void> repeatSong() async {
     if (isRepeat.value) {
-      await player.setLoopMode(LoopMode.all);
+      await player.setLoopMode(LoopMode.off);
     } else {
       await player.setLoopMode(LoopMode.one);
     }
@@ -82,8 +95,7 @@ class SongPlayerController extends GetxController {
     myBox.add({
       "title": title,
       "img": imgUrl,
-      "price": author,
+      "author": author,
     });
-    
   }
 }
