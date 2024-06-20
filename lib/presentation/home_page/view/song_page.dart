@@ -142,6 +142,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                       children: [
                         IconButton(
                           onPressed: () {
+                           
                             songPlayerController.isFav.value =
                                 !songPlayerController.isFav.value;
                             // songPlayerController.shuffledSong();

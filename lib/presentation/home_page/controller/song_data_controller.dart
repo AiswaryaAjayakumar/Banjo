@@ -70,4 +70,7 @@ class SongDataController extends GetxController {
       songPlayerController.playLocalAudio(previous);
     }
   }
+
+ 
+
 }

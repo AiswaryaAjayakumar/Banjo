@@ -2,10 +2,14 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
+  final FavoritesController favoritesController =
+      Get.put(FavoritesController());
+
   final player = AudioPlayer();
   RxBool isPlaying = false.obs;
   RxDouble sliderValue = 0.0.obs;
@@ -84,18 +88,5 @@ class SongPlayerController extends GetxController {
 
   void sliderChange(Duration position) {
     player.seek(position);
-  }
-
-  var myBox = Hive.box('fav');
-  void addFav({
-    required String title,
-    required String imgUrl,
-    required String author,
-  }) {
-    myBox.add({
-      "title": title,
-      "img": imgUrl,
-      "author": author,
-    });
   }
 }

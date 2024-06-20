@@ -24,7 +24,10 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   SongDataController songDataController = Get.put(SongDataController());
   SongPlayerController songPlayerController = Get.put(SongPlayerController());
+  //final TextEditingController _searchController = TextEditingController();
+
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton:
@@ -98,6 +101,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                         margin: EdgeInsets.symmetric(
                                             horizontal: 20),
                                         child: TextFormField(
+                                         // controller: _searchController,
                                           decoration: InputDecoration(
                                               hintText: "Search the Music...",
                                               border: InputBorder.none),
@@ -212,9 +216,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                 .toList(),
                                           )
                                         : Column(
-                                            children: [
-                                              //CustomListedPage(),
-                                            ],
+                                            children: [],
                                           )))
                               ]),
                         ),
