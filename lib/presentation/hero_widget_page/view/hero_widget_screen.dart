@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:marquee/marquee.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
@@ -55,23 +56,27 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        songPlayerController
-                            .songTitle.value, // Use actual data here
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Text(
+                          songPlayerController.songTitle.value,
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                      Text(
-                        songPlayerController
-                            .songArtist.value, // Use actual data here
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: ColorConstants.customGrey1,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: Text(
+                          songPlayerController.songArtist.value,
+                          //overflow: TextOverflow.fade,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: ColorConstants.customGrey1,
+                          ),
                         ),
                       ),
                     ],
