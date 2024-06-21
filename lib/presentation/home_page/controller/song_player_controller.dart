@@ -7,9 +7,6 @@ import 'package:music_app/presentation/home_page/controller/song_data_controller
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
-  final FavoritesController favoritesController =
-      Get.put(FavoritesController());
-
   final player = AudioPlayer();
   RxBool isPlaying = false.obs;
   RxDouble sliderValue = 0.0.obs;

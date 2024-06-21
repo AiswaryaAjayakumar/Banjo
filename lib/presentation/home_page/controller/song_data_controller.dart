@@ -16,6 +16,7 @@ class SongDataController extends GetxController {
   RxInt currentSongIndex = 0.obs;
 
   @override
+  
   void onInit() {
     super.onInit();
     storagePermission();

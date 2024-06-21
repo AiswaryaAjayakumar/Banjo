@@ -27,7 +27,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
   //final TextEditingController _searchController = TextEditingController();
 
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton:
@@ -101,7 +100,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                         margin: EdgeInsets.symmetric(
                                             horizontal: 20),
                                         child: TextFormField(
-                                         // controller: _searchController,
+                                          // controller: _searchController,
                                           decoration: InputDecoration(
                                               hintText: "Search the Music...",
                                               border: InputBorder.none),

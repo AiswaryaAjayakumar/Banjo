@@ -99,6 +99,6 @@ class _CustomListedPageState extends State<CustomListedPage> {
               ),
             ),
         separatorBuilder: (context, index) => SizedBox(height: 10),
-        itemCount: songDataController.songList.length);
+        itemCount: 1);
   }
 }

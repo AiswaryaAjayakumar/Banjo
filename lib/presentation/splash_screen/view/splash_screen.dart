@@ -19,6 +19,18 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    Timer(Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePageScreen(),
+          ));
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
@@ -39,25 +51,21 @@ class _SplashScreenState extends State<SplashScreen> {
             style: MytextStyle.customWhiteHeadings4,
           ),
         ),
-        Positioned(
-            bottom: 80,
-            left: 80,
-            right: 80,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(ColorConstants.customWhite)),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePageScreen(),
-                      ));
-                },
-                child: Text(
-                  "Get Started",
-                  style: MytextStyle.customWhiteHeadings5,
-                )))
+        // Positioned(
+        //     bottom: 80,
+        //     left: 80,
+        //     right: 80,
+        //     child: ElevatedButton(
+        //         style: ButtonStyle(
+        //             backgroundColor:
+        //                 MaterialStatePropertyAll(ColorConstants.customWhite)),
+        //         onPressed: () {
+
+        //         },
+        //         child: Text(
+        //           "Get Started",
+        //           style: MytextStyle.customWhiteHeadings5,
+        //         )))
       ]),
       // body: Image.network(
       //   "https://images.pexels.com/photos/3574678/pexels-photo-3574678.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
