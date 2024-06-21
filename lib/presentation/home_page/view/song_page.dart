@@ -6,15 +6,17 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
+import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
 import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
 import 'package:music_app/presentation/home_page/view/home_page.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPageScreen extends StatefulWidget {
-  const SongPageScreen({
-    super.key,
-  });
+  const SongPageScreen({super.key, required this.details});
 
+  final SongModel details;
   @override
   State<SongPageScreen> createState() => _SongPageScreenState();
 }
@@ -142,9 +144,17 @@ class _SongPageScreenState extends State<SongPageScreen>
                       children: [
                         IconButton(
                           onPressed: () {
-                           
                             songPlayerController.isFav.value =
                                 !songPlayerController.isFav.value;
+                            FavouriteController().addFav(
+                                title: widget.details.title,
+                                author: widget.details.artist!);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FavouriteScreen(),
+                                ));
+
                             // songPlayerController.shuffledSong();
                           },
                           icon: Obx(() => songPlayerController.isFav.value

@@ -207,8 +207,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                             .currentIndex(e.id);
 
                                                         Get.to(() => SongPageScreen(
-                                                            // songName: e.title,
-                                                            // songArtist: e.artist!,
+                                                            details: e,
                                                             ));
                                                       },
                                                     ))

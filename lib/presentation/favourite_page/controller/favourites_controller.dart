@@ -1,23 +1,25 @@
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-// class FavoritesController extends GetxController {
-//   var favoritesBox = Hive.box('fav');
+class FavouriteController extends GetxController {
+  SongModel? songs;
+  static List favKeys = [];
 
-//   List<SongModel> get favorites {
-//     return favoritesBox.values.toList().cast<SongModel>();
-//   }
+  var myBox = Hive.box('fav');
 
-//   void addFavorite(SongModel song) {
-//     favoritesBox.put(song.id, song);
-//   }
+  void addFav({
+    required String title,
+    required String author,
+  }) {
+    myBox.add({
+      "title": title,
+      "author": author,
+    });
+  }
 
-//   void removeFavorite(SongModel song) {
-//     favoritesBox.delete(song.id);
-//   }
-
-//   bool isFavorite(SongModel song) {
-//     return favoritesBox.containsKey(song.id);
-//   }
-// }
+  void deleteData(int index) {
+    myBox.deleteAt(index);
+    favKeys = myBox.keys.toList();
+  }
+}
