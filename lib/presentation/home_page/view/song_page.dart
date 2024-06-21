@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
+import 'package:music_app/global_widgets/bottom_nav.dart';
 import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
 import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
@@ -228,16 +229,16 @@ class _SongPageScreenState extends State<SongPageScreen>
               child: IconButton(
                   color: ColorConstants.customWhite,
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePageScreen(),
-                        ));
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
-                    //       builder: (context) => BottomNav(),
+                    //       builder: (context) => HomePageScreen(),
                     //     ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BottomNav(),
+                        ));
                   },
                   icon: Hero(
                     tag: "myImage",

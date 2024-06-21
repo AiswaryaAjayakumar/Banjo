@@ -45,6 +45,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:music_app/presentation/home_page/view/home_page.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({Key? key});
@@ -59,7 +60,19 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Favourite News"),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePageScreen(),
+                  ));
+            },
+            icon: Icon(
+              Icons.chevron_left_sharp,
+              size: 30,
+            )),
+        title: const Text("Favourite Songs"),
       ),
       body: ListView.builder(
         itemCount: favouriteController.myBox.length,

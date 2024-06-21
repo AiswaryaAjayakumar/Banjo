@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/constants/color.dart';
+import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
 import 'package:music_app/presentation/hero_widget_page/view/hero_widget_screen.dart';
 
 import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
@@ -150,7 +151,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               .isDeviceSongs.value = false;
                                         },
                                         child: Text(
-                                          "Favourites",
+                                          "Recent Played",
                                           style: GoogleFonts.nunitoSans(
                                               textStyle: TextStyle(
                                                   fontSize: 20,
@@ -206,8 +207,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                         songDataController
                                                             .currentIndex(e.id);
 
-                                                        Get.to(() => SongPageScreen(
-                                                            details: e,
+                                                        Get.to(() =>
+                                                            SongPageScreen(
+                                                              details: e,
                                                             ));
                                                       },
                                                     ))
