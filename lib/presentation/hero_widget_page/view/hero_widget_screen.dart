@@ -29,13 +29,13 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
         tag: "myImage",
         child: InkWell(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => SongPageScreen(
-            //         details: ,
-            //       ),
-            //     ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SongPageScreen(
+                   
+                  ),
+                ));
           },
           child: Container(
             height: MediaQuery.of(context).size.height / 12,

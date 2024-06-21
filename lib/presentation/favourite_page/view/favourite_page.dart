@@ -1,51 +1,10 @@
-// // ignore_for_file: prefer_const_constructors, unused_local_variable
-
-// import 'package:flutter/material.dart';
-// import 'package:news_api/presentaion/favourite_screen/view/widgets/custom_widgets.dart';
-// import 'package:news_api/presentaion/home_page/controller/home_screen_controller.dart';
-// import 'package:news_api/presentaion/home_page/view/widgets/custon_news_card.dart';
-// import 'package:provider/provider.dart';
-
-// class FavouriteScreen extends StatefulWidget {
-//   const FavouriteScreen({super.key});
-
-//   @override
-//   State<FavouriteScreen> createState() => _FavouriteScreenState();
-// }
-
-// class _FavouriteScreenState extends State<FavouriteScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final provObj = Provider.of<HomeScreenController>(context);
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Center(
-//           child: Text("Favourite News"),
-//         ),
-//       ),
-//       body: ListView.separated(
-//           itemBuilder: (context, index) {
-//             var favourite = provObj.myBox.getAt(index);
-//             return CustomWidgets(
-//               imageUrl: favourite["urlToImage"] ?? "",
-//               author: favourite["author"] ?? "Unknown Author",
-//               title: favourite["title"],
-//             );
-//           },
-//           separatorBuilder: (context, index) => SizedBox(
-//                 height: 10,
-//               ),
-//           itemCount: provObj.myBox.length),
-//     );
-//   }
-// }
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:music_app/global_widgets/bottom_nav.dart';
 import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
-import 'package:music_app/presentation/home_page/view/home_page.dart';
+
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({Key? key});
@@ -58,23 +17,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   FavouriteController favouriteController = Get.put(FavouriteController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePageScreen(),
-                  ));
-            },
-            icon: Icon(
-              Icons.chevron_left_sharp,
-              size: 30,
-            )),
-        title: const Text("Favourite Songs"),
-      ),
-      body: ListView.builder(
+    return ListView.builder(
         itemCount: favouriteController.myBox.length,
         itemBuilder: (context, index) {
           var favourite = favouriteController.myBox.getAt(index);
@@ -140,8 +83,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               ],
             ),
           );
-        },
-      ),
-    );
+        });
   }
 }

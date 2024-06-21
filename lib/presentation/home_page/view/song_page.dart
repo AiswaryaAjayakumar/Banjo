@@ -15,9 +15,9 @@ import 'package:music_app/presentation/home_page/view/home_page.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPageScreen extends StatefulWidget {
-  const SongPageScreen({super.key, required this.details});
+  const SongPageScreen({super.key, this.details});
 
-  final SongModel details;
+  final SongModel? details;
   @override
   State<SongPageScreen> createState() => _SongPageScreenState();
 }
@@ -148,13 +148,13 @@ class _SongPageScreenState extends State<SongPageScreen>
                             songPlayerController.isFav.value =
                                 !songPlayerController.isFav.value;
                             FavouriteController().addFav(
-                                title: widget.details.title,
-                                author: widget.details.artist!);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FavouriteScreen(),
-                                ));
+                                title: widget.details!.title,
+                                author: widget.details!.artist!);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) => FavouriteScreen(),
+                            //     ));
 
                             // songPlayerController.shuffledSong();
                           },
@@ -237,7 +237,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BottomNav(),
+                          builder: (context) => HomePageScreen(),
                         ));
                   },
                   icon: Hero(

@@ -2,7 +2,9 @@
 
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -151,7 +153,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               .isDeviceSongs.value = false;
                                         },
                                         child: Text(
-                                          "Recent Played",
+                                          "Favourite Songs",
                                           style: GoogleFonts.nunitoSans(
                                               textStyle: TextStyle(
                                                   fontSize: 20,
@@ -216,7 +218,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                 .toList(),
                                           )
                                         : Column(
-                                            children: [],
+                                            children: [
+                                              Container(
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                          .height,
+                                                  child: FavouriteScreen())
+                                            ],
                                           )))
                               ]),
                         ),

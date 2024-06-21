@@ -5,10 +5,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:music_app/core/constants/color.dart';
 import 'package:music_app/core/constants/texts.dart';
 import 'package:music_app/global_widgets/bottom_nav.dart';
 import 'package:music_app/presentation/home_page/view/home_page.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => BottomNav(),
+            builder: (context) => HomePageScreen(),
           ));
     });
     super.initState();
