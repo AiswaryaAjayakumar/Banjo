@@ -7,8 +7,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:music_app/presentation/splash_screen/view/splash_screen.dart';
 
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

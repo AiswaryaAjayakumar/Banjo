@@ -32,9 +32,7 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SongPageScreen(
-                   
-                  ),
+                  builder: (context) => SongPageScreen(),
                 ));
           },
           child: Container(
@@ -45,9 +43,12 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
                   begin: Alignment.topLeft,
                   end: Alignment.topRight,
                   colors: [
-                    Color.fromARGB(255, 4, 184, 142),
-                    Color.fromARGB(209, 170, 83, 1),
-                    Color.fromARGB(141, 4, 121, 137),
+                    ColorConstants.heroColorCyan,
+                    ColorConstants.heroColorBrown,
+                    ColorConstants.heroColorGreen,
+
+                    // Color.fromARGB(209, 170, 83, 1),
+                    // Color.fromARGB(141, 4, 121, 137),
                     // Color.fromARGB(189, 233, 119, 4),
                     // Color.fromARGB(255, 4, 184, 142),
                     // // Color.fromARGB(209, 170, 83, 1),
@@ -132,7 +133,6 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
                       ),
                     ),
                   ),
-                  // IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
                 ],
               ),
             ),

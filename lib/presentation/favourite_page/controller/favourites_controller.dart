@@ -10,11 +10,11 @@ class FavouriteController extends GetxController {
 
   void addFav({
     required String title,
-    required String author,
+    required String artist,
   }) {
     myBox.add({
       "title": title,
-      "author": author,
+      "artist": artist,
     });
   }
 

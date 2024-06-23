@@ -1,10 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:music_app/global_widgets/bottom_nav.dart';
-import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:music_app/core/constants/color.dart';
 
+import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
+import 'package:music_app/presentation/home_page/view/song_page.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({Key? key});
@@ -15,74 +18,96 @@ class FavouriteScreen extends StatefulWidget {
 
 class _FavouriteScreenState extends State<FavouriteScreen> {
   FavouriteController favouriteController = Get.put(FavouriteController());
+  SongPlayerController songPlayerController = Get.put(SongPlayerController());
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: favouriteController.myBox.length,
+    return ListView.separated(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
         itemBuilder: (context, index) {
           var favourite = favouriteController.myBox.getAt(index);
-          return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(),
-            child: Row(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                          "https://images.pexels.com/photos/25194062/pexels-photo-25194062/free-photo-of-a-small-green-duffel-bag-with-papers-on-it.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load"),
+          return InkWell(
+            onTap: () {
+              songPlayerController.playSongFromFavourites(favourite);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SongPageScreen(
+                      songData: favourite,
                     ),
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        favourite['title'] ?? "",
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                  ));
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height / 12,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ColorConstants.containerOrange,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/Iphone.jpeg"),
+                              fit: BoxFit.cover)),
+                    ),
+                    SizedBox(width: 18),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Text(
+                            favourite["title"],
+                            // overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        favourite['artist'] ?? "",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                favouriteController.deleteData(index);
-                                setState(() {});
-                              },
-                              icon: Icon(Icons.delete)),
-                        ],
-                      )
-                    ],
-                  ),
+                        Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            // color: Colors.amber,
+                            child: Text(
+                              favourite['artist'] ?? "Unknown",
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Colors.black),
+                            )),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              favouriteController.deleteData(index);
+                              setState(() {});
+                            },
+                            icon: Icon(Icons.delete_outlined)),
+                      ],
+                    )
+
+                   
+                  ],
                 ),
-              ],
+              ),
             ),
           );
-        });
+        },
+        separatorBuilder: (context, index) => SizedBox(height: 10),
+        itemCount: favouriteController.myBox.length);
   }
 }

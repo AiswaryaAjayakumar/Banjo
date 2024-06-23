@@ -14,5 +14,9 @@ class ColorConstants {
   static Color customGrey3 = Color.fromARGB(255, 169, 168, 168);
   static Color containerOrange = Color.fromARGB(204, 196, 171, 145);
   static Color homeText = Color.fromARGB(255, 27, 236, 229);
-
+  static Color heroColorCyan = Color.fromARGB(255, 4, 184, 142);
+  static Color heroColorBrown = Color.fromARGB(209, 170, 83, 1);
+  static Color heroColorGreen = Color.fromARGB(141, 4, 121, 137);
+  static Color heroColorLogo = Color(0xFFC7AE6A);
+  static Color heroColorLogo2 = Color(0xFFC99383);
 }
