@@ -31,7 +31,7 @@ class MytextStyle {
 
   static TextStyle customWhiteHeadings4 = GoogleFonts.bitter(
       textStyle: TextStyle(
-          fontSize: 25,
+          fontSize: 30,
           fontWeight: FontWeight.bold,
           color: ColorConstants.customWhite));
 

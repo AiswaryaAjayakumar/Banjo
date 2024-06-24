@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
           left: 80,
           right: 60,
           child: Text(
-            "Find Your Music..",
+            "Sail the seas of soundscapes..",
             style: MytextStyle.customWhiteHeadings4,
           ),
         ),

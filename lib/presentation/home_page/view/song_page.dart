@@ -6,7 +6,9 @@ import 'package:Banjo/presentation/favourite_page/controller/favourites_controll
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:Banjo/presentation/home_page/view/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:lottie/lottie.dart';
@@ -36,7 +38,7 @@ class _SongPageScreenState extends State<SongPageScreen>
     aniController = AnimationController(vsync: this);
     songPlayerController.isPlaying.listen((isPlaying) {
       if (isPlaying) {
-        aniController.forward();
+        aniController.repeat();
       } else {
         aniController.stop();
       }
@@ -74,16 +76,18 @@ class _SongPageScreenState extends State<SongPageScreen>
                     //   decoration: BoxDecoration(
                     //     borderRadius: BorderRadius.circular(10),
                     //   ),
-                    Center(
-                      child: Lottie.asset(
-                        filterQuality: FilterQuality.high,
-                        'assets/images/Animation - 1717130617436 (1).json',
-                        fit: BoxFit.fill,
-                        controller: aniController,
-                        onLoaded: (composition) {
-                          aniController.duration = composition.duration;
-                          aniController.repeat();
-                        },
+                    Flexible(
+                      child: Center(
+                        child: Lottie.asset(
+                          filterQuality: FilterQuality.high,
+                          'assets/images/Animation - 1717130617436 (1).json',
+                          fit: BoxFit.fill,
+                          controller: aniController,
+                          onLoaded: (composition) {
+                            aniController.duration = composition.duration;
+                            aniController.repeat();
+                          },
+                        ),
                       ),
                     ),
 
@@ -114,19 +118,22 @@ class _SongPageScreenState extends State<SongPageScreen>
                             songPlayerController.currentTime.value,
                             style: TextStyle(color: ColorConstants.customWhite),
                           ),
-                          Slider(
-                            inactiveColor: ColorConstants.customWhite,
-                            activeColor: ColorConstants.customBlack1,
-                            value: songPlayerController.sliderValue.value.clamp(
-                                0.0, songPlayerController.sliderValue.value),
-                            onChanged: (value) {
-                              songPlayerController.sliderValue.value = value;
-                              Duration songPosition =
-                                  Duration(seconds: value.toInt());
-                              songPlayerController.sliderChange(songPosition);
-                            },
-                            min: 0,
-                            max: songPlayerController.sliderMaxValue.value,
+                          Expanded(
+                            child: Slider(
+                              inactiveColor: ColorConstants.customWhite,
+                              activeColor: ColorConstants.customBlack1,
+                              value: songPlayerController.sliderValue.value
+                                  .clamp(0.0,
+                                      songPlayerController.sliderValue.value),
+                              onChanged: (value) {
+                                songPlayerController.sliderValue.value = value;
+                                Duration songPosition =
+                                    Duration(seconds: value.toInt());
+                                songPlayerController.sliderChange(songPosition);
+                              },
+                              min: 0,
+                              max: songPlayerController.sliderMaxValue.value,
+                            ),
                           ),
                           Text(
                             songPlayerController.totalTime.value,
