@@ -3,10 +3,10 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 // import 'package:google_fonts/google_fonts.dart';
-// import 'package:music_app/core/constants/color.dart';
-// import 'package:music_app/core/constants/texts.dart';
-// import 'package:music_app/global_widgets/bottom_nav.dart';
-// import 'package:music_app/presentation/home_page/view/home_page.dart';
+// import 'package:Banjo/core/constants/color.dart';
+// import 'package:Banjo/core/constants/texts.dart';
+// import 'package:Banjo/global_widgets/bottom_nav.dart';
+// import 'package:Banjo/presentation/home_page/view/home_page.dart';
 
 // class SelectedSongScreen extends StatefulWidget {
 //   const SelectedSongScreen({super.key});

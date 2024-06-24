@@ -1,17 +1,15 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:Banjo/core/constants/color.dart';
+import 'package:Banjo/core/constants/texts.dart';
+import 'package:Banjo/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:Banjo/presentation/home_page/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:lottie/lottie.dart';
-import 'package:music_app/core/constants/color.dart';
-import 'package:music_app/core/constants/texts.dart';
-import 'package:music_app/global_widgets/bottom_nav.dart';
-import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
-import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
-import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
-import 'package:music_app/presentation/home_page/view/home_page.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPageScreen extends StatefulWidget {
@@ -239,7 +237,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                       //     MaterialPageRoute(
                       //       builder: (context) => HomePageScreen(),
                       //     ));
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomePageScreen(),

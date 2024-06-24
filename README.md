@@ -1,4 +1,4 @@
-# music_app
+# Banjo
 
 A new Flutter project.
 

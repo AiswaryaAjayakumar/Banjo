@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/presentation/favourite_page/controller/favourites_controller.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
+import 'package:Banjo/presentation/favourite_page/controller/favourites_controller.dart';
+import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayerController extends GetxController {
@@ -87,17 +87,17 @@ class SongPlayerController extends GetxController {
     player.seek(position);
   }
 
-  Future<void> playSongFromFavourites(Map favourite) async {
-    songTitle.value = favourite["title"];
-    songArtist.value = favourite["artist"] ?? "Unknown";
-    try {
-      await player.setAudioSource(AudioSource.uri(Uri.parse(favourite["data"])));
-      await player.play();
-      isPlaying.value = true;
-    } catch (e) {
-      print("Error playing song: $e");
-      isPlaying.value = false;
-    }
-  }
-
+  // Future<void> playSongFromFavourites(Map favourite) async {
+  //   songTitle.value = favourite["title"];
+  //   songArtist.value = favourite["artist"] ?? "Unknown";
+  //   try {
+  //     await player
+  //         .setAudioSource(AudioSource.uri(Uri.parse(favourite["data"])));
+  //     await player.play();
+  //     isPlaying.value = true;
+  //   } catch (e) {
+  //     print("Error playing song: $e");
+  //     isPlaying.value = false;
+  //   }
+  // }
 }

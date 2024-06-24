@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/constants/color.dart';
+import 'package:Banjo/core/constants/color.dart';
 
 class MytextStyle {
   static TextStyle customWhiteHeadings = GoogleFonts.patuaOne(

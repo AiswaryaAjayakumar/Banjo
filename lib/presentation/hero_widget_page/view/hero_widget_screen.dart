@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:music_app/core/constants/color.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
-import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
-import 'package:music_app/presentation/home_page/view/song_page.dart';
+import 'package:Banjo/core/constants/color.dart';
+import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:Banjo/presentation/home_page/view/song_page.dart';
 
 class HeroWidgetScreen extends StatefulWidget {
   const HeroWidgetScreen({
@@ -29,7 +29,7 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
         tag: "myImage",
         child: InkWell(
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => SongPageScreen(),

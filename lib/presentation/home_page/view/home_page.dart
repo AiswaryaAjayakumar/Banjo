@@ -8,14 +8,14 @@
 // import 'package:get/get.dart';
 
 // import 'package:google_fonts/google_fonts.dart';
-// import 'package:music_app/core/constants/color.dart';
-// import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
-// import 'package:music_app/presentation/hero_widget_page/view/hero_widget_screen.dart';
+// import 'package:Banjo/core/constants/color.dart';
+// import 'package:Banjo/presentation/favourite_page/view/favourite_page.dart';
+// import 'package:Banjo/presentation/hero_widget_page/view/hero_widget_screen.dart';
 
-// import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
-// import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
-// import 'package:music_app/presentation/home_page/view/song_page.dart';
-// import 'package:music_app/presentation/home_page/view/widgets/custom_listed_page.dart';
+// import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+// import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+// import 'package:Banjo/presentation/home_page/view/song_page.dart';
+// import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
 
 // class HomePageScreen extends StatefulWidget {
 //   const HomePageScreen({super.key});
@@ -190,15 +190,15 @@
 
 import 'dart:ui';
 
+import 'package:Banjo/core/constants/color.dart';
+import 'package:Banjo/presentation/favourite_page/view/favourite_page.dart';
+import 'package:Banjo/presentation/hero_widget_page/view/hero_widget_screen.dart';
+import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:Banjo/presentation/home_page/view/song_page.dart';
+import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_app/core/constants/color.dart';
-import 'package:music_app/presentation/hero_widget_page/view/hero_widget_screen.dart';
-import 'package:music_app/presentation/home_page/controller/song_data_controller.dart';
-import 'package:music_app/presentation/home_page/controller/song_player_controller.dart';
-import 'package:music_app/presentation/home_page/view/song_page.dart';
-import 'package:music_app/presentation/home_page/view/widgets/custom_listed_page.dart';
-import 'package:music_app/presentation/favourite_page/view/favourite_page.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -267,23 +267,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                         ),
                                       ),
                                     ),
-                                    TextButton(
-                                      onPressed: () {
-                                        songDataController.isDeviceSongs.value =
-                                            false;
-                                      },
-                                      child: Text(
-                                        "Favourite Songs",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w400,
-                                          color: songDataController
-                                                  .isDeviceSongs.value
-                                              ? ColorConstants.customWhite
-                                              : ColorConstants.homeText,
-                                        ),
-                                      ),
-                                    ),
+                                    // TextButton(
+                                    //   onPressed: () {
+                                    //     songDataController.isDeviceSongs.value =
+                                    //         false;
+                                    //   },
+                                    //   child: Text(
+                                    //     "Favourite Songs",
+                                    //     style: TextStyle(
+                                    //       fontSize: 20,
+                                    //       fontWeight: FontWeight.w400,
+                                    //       color: songDataController
+                                    //               .isDeviceSongs.value
+                                    //           ? ColorConstants.customWhite
+                                    //           : ColorConstants.homeText,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -319,15 +319,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                               .toList(),
                                         )
                                       : Column(
-                                          children: [
-                                            Container(
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height,
-                                              child: FavouriteScreen(),
-                                            ),
-                                          ],
-                                        ),
+                                          // children: [
+                                          //   Container(
+                                          //     height: MediaQuery.of(context)
+                                          //         .size
+                                          //         .height,
+                                          //     child: FavouriteScreen(),
+                                          //   ),
+                                          // ],
+                                          ),
                                 ),
                               ),
                             ],

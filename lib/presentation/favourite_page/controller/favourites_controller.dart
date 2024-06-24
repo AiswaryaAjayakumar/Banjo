@@ -23,3 +23,4 @@ class FavouriteController extends GetxController {
     favKeys = myBox.keys.toList();
   }
 }
+
