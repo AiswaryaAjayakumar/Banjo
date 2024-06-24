@@ -301,7 +301,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                                     CustomListedPage(
                                                       songName: e.title,
                                                       artist: e.artist!,
-                                                     
                                                       onPressed: () {
                                                         songPlayerController
                                                             .playLocalAudio(e);

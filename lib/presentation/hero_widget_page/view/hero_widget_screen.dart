@@ -72,7 +72,8 @@ class _HeroWidgetScreenState extends State<HeroWidgetScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
-                                image: AssetImage("assets/images/Iphone.jpeg"),
+                                image: AssetImage(
+                                    "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png"),
                                 fit: BoxFit.cover,
                               ),
                             ),

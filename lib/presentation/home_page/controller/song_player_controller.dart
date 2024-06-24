@@ -87,17 +87,17 @@ class SongPlayerController extends GetxController {
     player.seek(position);
   }
 
-  // Future<void> playSongFromFavourites(Map favourite) async {
-  //   songTitle.value = favourite["title"];
-  //   songArtist.value = favourite["artist"] ?? "Unknown";
-  //   try {
-  //     await player
-  //         .setAudioSource(AudioSource.uri(Uri.parse(favourite["data"])));
-  //     await player.play();
-  //     isPlaying.value = true;
-  //   } catch (e) {
-  //     print("Error playing song: $e");
-  //     isPlaying.value = false;
-  //   }
+  // // Future<void> playSongFromFavourites(Map favourite) async {
+  // //   songTitle.value = favourite["title"];
+  // //   songArtist.value = favourite["artist"] ?? "Unknown";
+  // //   try {
+  // //     await player
+  // //         .setAudioSource(AudioSource.uri(Uri.parse(favourite["data"])));
+  // //     await player.play();
+  // //     isPlaying.value = true;
+  // //   } catch (e) {
+  // //     print("Error playing song: $e");
+  // //     isPlaying.value = false;
+  // //   }
   // }
 }

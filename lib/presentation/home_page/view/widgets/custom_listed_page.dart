@@ -111,7 +111,6 @@ import 'package:flutter/material.dart';
 
 import 'package:Banjo/core/constants/color.dart';
 
-
 class CustomListedPage extends StatefulWidget {
   const CustomListedPage({
     Key? key,
@@ -150,7 +149,8 @@ class _CustomListedPageState extends State<CustomListedPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/Iphone.jpeg"),
+                    image: AssetImage(
+                        "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png"),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -154,9 +154,9 @@ class _SongPageScreenState extends State<SongPageScreen>
                             onPressed: () {
                               songPlayerController.isFav.value =
                                   !songPlayerController.isFav.value;
-                              FavouriteController().addFav(
-                                  title: widget.details!.title,
-                                  artist: widget.details!.artist!);
+                              // FavouriteController().addFav(
+                              //     title: widget.details!.title,
+                              //     artist: widget.details!.artist!);
 
                               // Navigator.push(
                               //     context,
@@ -244,11 +244,12 @@ class _SongPageScreenState extends State<SongPageScreen>
                       //     MaterialPageRoute(
                       //       builder: (context) => HomePageScreen(),
                       //     ));
-                      Navigator.pushReplacement(
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomePageScreen(),
-                          ));
+                          ),
+                          (route) => false);
                     },
                     icon: Hero(
                       tag: "myImage",
