@@ -17,6 +17,11 @@ class ColorConstants {
   static Color heroColorCyan = Color.fromARGB(255, 4, 184, 142);
   static Color heroColorBrown = Color.fromARGB(209, 170, 83, 1);
   static Color heroColorGreen = Color.fromARGB(141, 4, 121, 137);
-  static Color heroColorLogo = Color(0xFFC7AE6A);
-  static Color heroColorLogo2 = Color(0xFFC99383);
+  static Color goldColorLogo1 = Color(0xFFC7AE6A);
+  static Color copperColorLogo1 = Color(0xFFC99383);
+  static Color copperColorLogo3 = Color.fromARGB(255, 119, 87, 77);
+  static Color blackColorLogo1 = Color(0xFF1a1a1a);
+  static Color blackColorLogo2 = Color.fromARGB(255, 55, 54, 54);
+  static Color copperColorLogo2 = Color.fromARGB(255, 246, 206, 194);
+  static Color goldColorLogo2 = Color(0xFFd5c28f);
 }

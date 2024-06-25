@@ -18,6 +18,8 @@ class SongPlayerController extends GetxController {
   RxBool isFav = false.obs;
   RxString totalTime = "0".obs;
   RxString currentTime = "0".obs;
+  RxBool isSongLoaded = false.obs;
+  
 
   @override
   void onInit() {
@@ -37,6 +39,7 @@ class SongPlayerController extends GetxController {
     player.play();
     timePosition();
     isPlaying.value = true;
+   isSongLoaded.value = true;
   }
 
   Future<void> repeatSong() async {
@@ -87,6 +90,12 @@ class SongPlayerController extends GetxController {
     player.seek(position);
   }
 
+   void stopPlaying() async {
+    await player.stop();
+    isPlaying.value = false;
+    isSongLoaded.value = false;
+  }
+   
   // // Future<void> playSongFromFavourites(Map favourite) async {
   // //   songTitle.value = favourite["title"];
   // //   songArtist.value = favourite["artist"] ?? "Unknown";

@@ -9,13 +9,13 @@ class MytextStyle {
       textStyle: TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
-          color: ColorConstants.customWhite));
+          color: ColorConstants.copperColorLogo1));
 
   static TextStyle customWhiteHeadings1 = GoogleFonts.poppins(
       textStyle: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w400,
-          color: ColorConstants.customWhite1));
+          color: ColorConstants.copperColorLogo2));
 
   static TextStyle customWhiteHeadings2 = GoogleFonts.ebGaramond(
       textStyle: TextStyle(

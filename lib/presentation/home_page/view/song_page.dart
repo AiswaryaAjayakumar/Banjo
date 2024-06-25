@@ -2,14 +2,18 @@
 
 import 'package:Banjo/core/constants/color.dart';
 import 'package:Banjo/core/constants/texts.dart';
+import 'package:Banjo/presentation/favourite_page/controller/favourites_controller.dart';
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:Banjo/presentation/home_page/view/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:lottie/lottie.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SongPageScreen extends StatefulWidget {
   const SongPageScreen({super.key, this.details, this.songData});
@@ -26,21 +30,21 @@ class _SongPageScreenState extends State<SongPageScreen>
   SongPlayerController songPlayerController = Get.put(SongPlayerController());
   SongDataController songDataController = Get.put(SongDataController());
 
-  late AnimationController aniController;
-  late LottieComposition lotComposition;
+  // late AnimationController aniController;
+  // late LottieComposition lotComposition;
 
   @override
-  void initState() {
-    super.initState();
-    aniController = AnimationController(vsync: this);
-    songPlayerController.isPlaying.listen((isPlaying) {
-      if (isPlaying) {
-        aniController.repeat();
-      } else {
-        aniController.stop();
-      }
-    });
-  }
+  // void initState() {
+  //   super.initState();
+  //   aniController = AnimationController(vsync: this);
+  //   songPlayerController.isPlaying.listen((isPlaying) {
+  //     if (isPlaying) {
+  //       aniController.repeat();
+  //     } else {
+  //       aniController.stop();
+  //     }
+  //   });
+  // }
 
   // @override
   // void dispose() {
@@ -56,10 +60,14 @@ class _SongPageScreenState extends State<SongPageScreen>
           Container(
             height: MediaQuery.sizeOf(context).height,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://i.pinimg.com/564x/3b/52/46/3b524657f01fc92110efa4317d85a979.jpg"),
-                    fit: BoxFit.cover)),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.topLeft,
+                  colors: [
+                    ColorConstants.blackColorLogo1,
+                    ColorConstants.blackColorLogo2
+                  ]),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -74,16 +82,26 @@ class _SongPageScreenState extends State<SongPageScreen>
                   //   ),
                   Flexible(
                     child: Center(
-                      child: Lottie.asset(
-                        filterQuality: FilterQuality.high,
-                        'assets/animations/Animation - 1717130617436.json',
-                        fit: BoxFit.fill,
-                        controller: aniController,
-                        onLoaded: (composition) {
-                          aniController.duration = composition.duration;
-                          aniController.repeat();
-                        },
+                      child: Container(
+                        height: MediaQuery.sizeOf(context).height / 1.8,
+                        width: MediaQuery.sizeOf(context).width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://m.media-amazon.com/images/M/MV5BYzY0OTVhZTMtYjAzNy00ODYzLTkxMzUtZmY2MWRlNTE1N2UyXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg"),
+                                fit: BoxFit.cover)),
                       ),
+                      // Lottie.asset(
+                      //   filterQuality: FilterQuality.high,
+                      //   'assets/animations/Animation - 1717130617436.json',
+                      //   fit: BoxFit.fill,
+                      //   controller: aniController,
+                      //   onLoaded: (composition) {
+                      //     aniController.duration = composition.duration;
+                      //     aniController.repeat();
+                      //   },
+                      // ),
                     ),
                   ),
 
@@ -116,8 +134,8 @@ class _SongPageScreenState extends State<SongPageScreen>
                         ),
                         Expanded(
                           child: Slider(
-                            inactiveColor: ColorConstants.customWhite,
-                            activeColor: ColorConstants.customBlack1,
+                            inactiveColor: ColorConstants.customGrey,
+                            activeColor: ColorConstants.copperColorLogo1,
                             value: songPlayerController.sliderValue.value.clamp(
                                 0.0, songPlayerController.sliderValue.value),
                             onChanged: (value) {
@@ -163,7 +181,8 @@ class _SongPageScreenState extends State<SongPageScreen>
                           },
                           icon: Obx(() => songPlayerController.isFav.value
                               ? Icon(Icons.favorite,
-                                  size: 40, color: Colors.orange)
+                                  size: 40,
+                                  color: ColorConstants.copperColorLogo1)
                               : Icon(Icons.favorite,
                                   size: 40,
                                   color: ColorConstants.customWhite1)),
@@ -179,7 +198,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                               ? InkWell(
                                   onTap: () {
                                     songPlayerController.pausePlaying();
-                                    aniController.stop();
+                                    // aniController.stop();
                                   },
                                   child: CircleAvatar(
                                       radius: 30,
@@ -191,7 +210,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                               : InkWell(
                                   onTap: () {
                                     songPlayerController.resumePlaying();
-                                    aniController.repeat();
+                                    //aniController.repeat();
                                   },
                                   child: CircleAvatar(
                                       radius: 30,
@@ -214,7 +233,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                             icon: Obx(() => Icon(Icons.refresh_outlined,
                                 size: 40,
                                 color: songPlayerController.isRepeat.value
-                                    ? Colors.orange
+                                    ? ColorConstants.copperColorLogo1
                                     : ColorConstants.customWhite1)))
                       ],
                     ),
@@ -237,19 +256,15 @@ class _SongPageScreenState extends State<SongPageScreen>
                     //     MaterialPageRoute(
                     //       builder: (context) => HomePageScreen(),
                     //     ));
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePageScreen(),
-                        ),
-                        (route) => false);
+                        PageTransition(
+                            child: HomePageScreen(),
+                            type: PageTransitionType.topToBottom));
                   },
-                  icon: Hero(
-                    tag: "myImage",
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                    ),
+                  icon: Icon(
+                    Icons.keyboard_arrow_down,
+                    size: 30,
                   )),
             ),
           ),
