@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 //new working code
 
+import 'dart:math';
+
 import 'package:Banjo/core/constants/color.dart';
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:Banjo/presentation/home_page/view/widgets/custom_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -109,7 +112,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: ColorConstants.copperColorLogo2,
+                                  color: ColorConstants.customWhite1,
                                 ),
                               ),
                             );
@@ -118,6 +121,21 @@ class _CustomListedPageState extends State<CustomListedPage> {
                       ],
                     ),
                   ),
+                  IconButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => CustomBottomSheet(
+                            artist: widget.artist,
+                            songId: widget.songId,
+                            songName: widget.songName,
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.more_vert_outlined,
+                        color: ColorConstants.customWhite1,
+                      ))
                 ],
               ),
             ),

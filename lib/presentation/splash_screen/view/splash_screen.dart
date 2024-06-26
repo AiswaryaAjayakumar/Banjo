@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:Banjo/core/constants/texts.dart';
+import 'package:Banjo/global_widgets/bottom_nav.dart';
 import 'package:Banjo/presentation/home_page/view/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePageScreen(),
+            builder: (context) => BottomNav(),
           ));
     });
     super.initState();

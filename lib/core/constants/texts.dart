@@ -56,5 +56,5 @@ class MytextStyle {
       textStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: ColorConstants.copperColorLogo1));
+          color: ColorConstants.customWhite1));
 }

@@ -303,6 +303,7 @@
 //new working code
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:Banjo/global_widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -392,7 +393,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                       () => Text(
                         songPlayerController.songArtist.value,
                         style: TextStyle(
-                          color: ColorConstants.copperColorLogo2,
+                          color: ColorConstants.customWhite1,
                           fontSize: 16,
                         ),
                       ),
@@ -514,7 +515,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                     Navigator.pushReplacement(
                       context,
                       PageTransition(
-                        child: HomePageScreen(),
+                        child: BottomNav(),
                         type: PageTransitionType.topToBottom,
                       ),
                     );

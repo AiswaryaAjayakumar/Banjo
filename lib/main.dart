@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unused_local_variable
 
+import 'package:Banjo/global_widgets/bottom_nav.dart';
 import 'package:Banjo/global_widgets/selected_song.dart';
 import 'package:Banjo/presentation/home_page/view/home_page.dart';
 import 'package:Banjo/presentation/home_page/view/song_page.dart';

@@ -331,6 +331,7 @@ import 'package:Banjo/presentation/home_page/controller/song_player_controller.d
 import 'package:Banjo/presentation/home_page/view/song_page.dart';
 import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
 import 'package:Banjo/presentation/search_songs/view/search_screen.dart';
+import 'package:Banjo/presentation/settings_screen/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -354,22 +355,26 @@ class _HomePageScreenState extends State<HomePageScreen> {
         leading: Image.asset(
             "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png"),
         title: Text(
-          "Banjo",
+          "Welcome",
           style: MytextStyle.customWhiteHeadings8,
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: IconButton(
-              onPressed: () {
-                
-              },
-               icon: Icon(
-              Icons.settings,
-              size: 28,
-              color: ColorConstants.copperColorLogo1,
-            ),)
-          )
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SettingScreen(),
+                      ));
+                },
+                icon: Icon(
+                  Icons.settings,
+                  size: 28,
+                  color: ColorConstants.customWhite1,
+                ),
+              ))
         ],
       ),
       body: SafeArea(
