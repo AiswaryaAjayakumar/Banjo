@@ -319,17 +319,18 @@
 //   }
 // }
 
-// ignore_for_file: prefer_const_constructors, invalid_use_of_protected_member
-
-import 'dart:ui';
+//new working code
+// ignore_for_file: prefer_const_constructors, invalid_use_of_protected_member, prefer_const_literals_to_create_immutables
 
 import 'package:Banjo/core/constants/color.dart';
+import 'package:Banjo/core/constants/texts.dart';
 
 import 'package:Banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:Banjo/presentation/home_page/view/song_page.dart';
 import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
+import 'package:Banjo/presentation/search_songs/view/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -348,85 +349,155 @@ class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorConstants.blackColorLogo1,
+        leading: Image.asset(
+            "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png"),
+        title: Text(
+          "Banjo",
+          style: MytextStyle.customWhiteHeadings8,
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(
+              onPressed: () {
+                
+              },
+               icon: Icon(
+              Icons.settings,
+              size: 28,
+              color: ColorConstants.copperColorLogo1,
+            ),)
+          )
+        ],
+      ),
       body: SafeArea(
         child: Stack(
           children: [
             SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  color: ColorConstants.blackColorLogo1
-                
-                    ),
+                decoration:
+                    BoxDecoration(color: ColorConstants.blackColorLogo1),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 10),
-                      Obx(
-                        () => Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                songDataController.isDeviceSongs.value = true;
-                              },
-                              child: Text(
-                                "Device Songs",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  color: songDataController.isDeviceSongs.value
-                                      ? ColorConstants.copperColorLogo3
-                                      : ColorConstants.customWhite,
-                                ),
+                      SizedBox(height: 5),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 10),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchScreen(),
+                                ));
+                          },
+                          child: Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: ColorConstants.customWhite1,
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.search_outlined,
+                                    color: ColorConstants.customWhite,
+                                    size: 25,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "What do you want to listen to?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: ColorConstants.customWhite),
+                                  )
+                                ],
                               ),
                             ),
-                            // Uncomment and use the Favourite Songs button if needed
-                            // TextButton(
-                            //   onPressed: () {
-                            //     songDataController.isDeviceSongs.value = false;
-                            //   },
-                            //   child: Text(
-                            //     "Favourite Songs",
-                            //     style: TextStyle(
-                            //       fontSize: 20,
-                            //       fontWeight: FontWeight.w400,
-                            //       color: songDataController.isDeviceSongs.value
-                            //           ? ColorConstants.customWhite
-                            //           : ColorConstants.homeText,
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
+                          ),
                         ),
                       ),
+                      // Obx(
+                      //   () => Row(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       // TextButton(
+                      //       //   onPressed: () {
+                      //       //     songDataController.isDeviceSongs.value = true;
+                      //       //   },
+                      //       //   child: Text(
+                      //       //     "Device Songs",
+                      //       //     style: TextStyle(
+                      //       //       fontSize: 20,
+                      //       //       fontWeight: FontWeight.w400,
+                      //       //       color: songDataController.isDeviceSongs.value
+                      //       //           ? ColorConstants.copperColorLogo3
+                      //       //           : ColorConstants.customWhite,
+                      //       //     ),
+                      //       //   ),
+                      //       // ),
+                      //       // Uncomment and use the Favourite Songs button if needed
+                      //       // TextButton(
+                      //       //   onPressed: () {
+                      //       //     songDataController.isDeviceSongs.value = false;
+                      //       //   },
+                      //       //   child: Text(
+                      //       //     "Favourite Songs",
+                      //       //     style: TextStyle(
+                      //       //       fontSize: 20,
+                      //       //       fontWeight: FontWeight.w400,
+                      //       //       color: songDataController.isDeviceSongs.value
+                      //       //           ? ColorConstants.customWhite
+                      //       //           : ColorConstants.homeText,
+                      //       //     ),
+                      //       //   ),
+                      //       // ),
+                      //     ],
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 4),
                         child: Obx(
                           () => songDataController.isDeviceSongs.value
                               ? Column(
-                                  children: songDataController.songList.value
-                                      .map(
-                                        (e) => Column(
-                                          children: [
-                                            CustomListedPage(
-                                              songName: e.title,
-                                              artist: e.artist!,
-                                              onPressed: () {
-                                                songPlayerController
-                                                    .playLocalAudio(e);
-                                                songDataController
-                                                    .currentIndex(e.id);
-                                                Get.to(() =>
-                                                    SongPageScreen(details: e));
-                                              },
-                                            ),
-                                            SizedBox(height: 10),
-                                          ],
-                                        ),
-                                      )
-                                      .toList(),
+                                  children: [
+                                    ...songDataController.songList.value
+                                        .map(
+                                          (e) => Column(
+                                            children: [
+                                              CustomListedPage(
+                                                songName: e.title,
+                                                artist: e.artist!,
+                                                songId: e.id,
+                                                onPressed: () {
+                                                  songPlayerController
+                                                      .playLocalAudio(e);
+                                                  songDataController
+                                                      .currentIndex(e.id);
+                                                  Get.to(() => SongPageScreen(
+                                                      details: e));
+                                                },
+                                              ),
+                                              SizedBox(height: 10),
+                                            ],
+                                          ),
+                                        )
+                                        .toList(),
+                                    SizedBox(
+                                        height:
+                                            100), // Adjust the height as needed
+                                  ],
                                 )
                               : Column(
                                   // Uncomment and use the FavouriteScreen if needed

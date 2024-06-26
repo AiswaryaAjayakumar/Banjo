@@ -52,4 +52,9 @@ class MytextStyle {
           fontSize: 13,
           fontWeight: FontWeight.bold,
           color: ColorConstants.customWhite));
+  static TextStyle customWhiteHeadings8 = GoogleFonts.playfairDisplaySc(
+      textStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.copperColorLogo1));
 }

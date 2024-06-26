@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+//new working code
 
 import 'package:Banjo/core/constants/color.dart';
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
@@ -9,16 +10,17 @@ import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class CustomListedPage extends StatefulWidget {
-  const CustomListedPage({
-    super.key,
-    required this.songName,
-    required this.onPressed,
-    required this.artist,
-  });
+  const CustomListedPage(
+      {super.key,
+      required this.songName,
+      required this.onPressed,
+      required this.artist,
+      required this.songId});
 
   final String songName;
   final String artist;
   final VoidCallback onPressed;
+  final int songId;
 
   @override
   State<CustomListedPage> createState() => _CustomListedPageState();
@@ -37,7 +39,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
         return InkWell(
           onTap: widget.onPressed,
           child: Container(
-            height: MediaQuery.of(context).size.height / 11,
+            // height: MediaQuery.of(context).size.height / 11,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -49,7 +51,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
               //color: ColorConstants.containerOrange,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -57,7 +59,7 @@ class _CustomListedPageState extends State<CustomListedPage> {
                     radius: 25,
                     backgroundColor: ColorConstants.copperColorLogo1,
                     child: QueryArtworkWidget(
-                      id: songDataController.songList[index].id,
+                      id: widget.songId,
                       type: ArtworkType.AUDIO,
                       nullArtworkWidget: Icon(
                         Icons.music_note_outlined,
