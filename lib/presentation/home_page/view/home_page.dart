@@ -332,8 +332,10 @@ import 'package:Banjo/presentation/home_page/view/song_page.dart';
 import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
 import 'package:Banjo/presentation/search_songs/view/search_screen.dart';
 import 'package:Banjo/presentation/settings_screen/view/settings_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -350,6 +352,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.blackColorLogo1,
       appBar: AppBar(
         backgroundColor: ColorConstants.blackColorLogo1,
         leading: Image.asset(
@@ -359,15 +362,32 @@ class _HomePageScreenState extends State<HomePageScreen> {
           style: MytextStyle.customWhiteHeadings8,
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchScreen(),
+                  ));
+            },
+            icon: Icon(
+              Icons.search_outlined,
+              color: ColorConstants.customWhite1,
+              size: 28,
+            ),
+          ),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: IconButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => SettingScreen(),
-                      ));
+                      PageTransition(
+                          child: SettingScreen(),
+                          type: PageTransitionType.rightToLeft,
+                          curve: Curves.bounceOut,
+                          duration: Duration(seconds: 1)),
+                      (route) => false);
                 },
                 icon: Icon(
                   Icons.settings,
@@ -390,49 +410,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 5),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 10),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SearchScreen(),
-                                ));
-                          },
-                          child: Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: ColorConstants.customWhite1,
-                            ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.search_outlined,
-                                    color: ColorConstants.customWhite,
-                                    size: 25,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "What do you want to listen to?",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                        color: ColorConstants.customWhite),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+
                       // Obx(
                       //   () => Row(
                       //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -501,7 +479,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                         .toList(),
                                     SizedBox(
                                         height:
-                                            100), // Adjust the height as needed
+                                            150), // Adjust the height as needed
                                   ],
                                 )
                               : Column(

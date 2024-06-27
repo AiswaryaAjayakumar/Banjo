@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:Banjo/core/constants/color.dart';
 import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
@@ -42,7 +42,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,8 +86,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                 width: constraints.maxWidth,
                                 child: Text(
                                   widget.songName,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                  //overflow: TextOverflow.ellipsis,
+                                  //maxLines: 1,
                                   style: TextStyle(
                                     color: ColorConstants.copperColorLogo1,
                                     fontSize: 18,
@@ -103,8 +103,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                 width: constraints.maxWidth,
                                 child: Text(
                                   widget.artist,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                  // overflow: TextOverflow.ellipsis,
+                                  // maxLines: 1,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: ColorConstants.customWhite1,
@@ -132,11 +132,16 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   onTap: () {},
                   child: Row(
                     children: [
-                      Icon(Icons.share_sharp),
+                      Icon(Icons.share_sharp,
+                          size: 25, color: ColorConstants.customWhite1),
                       SizedBox(
                         width: 20,
                       ),
-                      Text("Share"),
+                      Text(
+                        "Share",
+                        style: TextStyle(
+                            fontSize: 17, color: ColorConstants.customWhite1),
+                      ),
                     ],
                   ),
                 ),
@@ -147,11 +152,19 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   onTap: () {},
                   child: Row(
                     children: [
-                      Icon(Icons.playlist_add),
+                      Icon(
+                        Icons.playlist_add,
+                        size: 25,
+                        color: ColorConstants.customWhite1,
+                      ),
                       SizedBox(
                         width: 20,
                       ),
-                      Text("Add to Playlist"),
+                      Text(
+                        "Add to Playlist",
+                        style: TextStyle(
+                            fontSize: 17, color: ColorConstants.customWhite1),
+                      ),
                     ],
                   ),
                 )

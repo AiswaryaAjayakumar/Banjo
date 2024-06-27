@@ -48,11 +48,12 @@ class SettingScreen extends StatelessWidget {
             // ),
             TextButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => PrivacyPolicyScreen(),
                   ),
+                  (route) => false,
                 );
               },
               child: Text(
@@ -65,11 +66,12 @@ class SettingScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => TermsAndConditionScreen(),
                   ),
+                  (route) => false,
                 );
               },
               child: Text(

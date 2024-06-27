@@ -135,100 +135,103 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      physics: ScrollPhysics(),
-      itemBuilder: (context, index) {
-        var favourite = favouriteController.myBox.getAt(index);
-        return InkWell(
-          onTap: () {
-            //songPlayerController.playSongFromFavourites(favourite);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SongPageScreen(
-                  songData: favourite,
+    return Scaffold(
+      backgroundColor: ColorConstants.blackColorLogo1,
+      body: ListView.separated(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        itemBuilder: (context, index) {
+          var favourite = favouriteController.myBox.getAt(index);
+          return InkWell(
+            onTap: () {
+              //songPlayerController.playSongFromFavourites(favourite);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SongPageScreen(
+                    songData: favourite,
+                  ),
                 ),
+              );
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height / 12,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ColorConstants.containerOrange,
               ),
-            );
-          },
-          child: Container(
-            height: MediaQuery.of(context).size.height / 12,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: ColorConstants.containerOrange,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/Iphone.jpeg"),
-                        fit: BoxFit.cover,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/Iphone.jpeg"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 18),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: Text(
-                          favourite["title"] ?? "",
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                    SizedBox(width: 18),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Text(
+                            favourite["title"] ?? "",
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: Text(
-                          favourite['artist']??"",
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Text(
+                            favourite['artist'] ?? "",
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          // Delay the state change to avoid setState during build exception
-                          Future.delayed(Duration.zero, () {
-                            // favouriteController.removeFav(
-                            //     title: favourite['title']);
-                            // setState(() {});
-                          });
-                        },
-                        icon: Icon(Icons.delete_outlined),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            // Delay the state change to avoid setState during build exception
+                            Future.delayed(Duration.zero, () {
+                              // favouriteController.removeFav(
+                              //     title: favourite['title']);
+                              // setState(() {});
+                            });
+                          },
+                          icon: Icon(Icons.delete_outlined),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
-      separatorBuilder: (context, index) => SizedBox(height: 10),
-      itemCount: favouriteController.myBox.length,
+          );
+        },
+        separatorBuilder: (context, index) => SizedBox(height: 10),
+        itemCount: favouriteController.myBox.length,
+      ),
     );
   }
 }

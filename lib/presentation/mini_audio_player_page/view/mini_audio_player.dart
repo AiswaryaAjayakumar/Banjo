@@ -311,7 +311,8 @@ class _MiniAudioPlayerScreenState extends State<MiniAudioPlayerScreen> {
                     ),
                     IconButton(
                       onPressed: () {
-                        SizedBox.shrink();
+                        songPlayerController.isSongLoaded.value = false;
+                        songPlayerController.pausePlaying();
                       },
                       icon: Icon(
                         Icons.close_outlined,

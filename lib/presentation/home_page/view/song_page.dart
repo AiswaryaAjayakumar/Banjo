@@ -356,25 +356,25 @@ class _SongPageScreenState extends State<SongPageScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Center(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height / 1.8,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Obx(() => QueryArtworkWidget(
-                                id: songPlayerController
-                                        .currentSongDetails.value?.id ??
-                                    0,
-                                type: ArtworkType.AUDIO,
-                                nullArtworkWidget:
-                                    Icon(Icons.music_note_outlined),
-                                artworkBorder: BorderRadius.circular(10),
-                                artworkFit: BoxFit.cover,
-                              )),
+                    Center(
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 2,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                         ),
+                        child: Obx(() => QueryArtworkWidget(
+                              id: songPlayerController
+                                      .currentSongDetails.value?.id ??
+                                  0,
+                              type: ArtworkType.AUDIO,
+                              nullArtworkWidget: Image.asset(
+                                "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png",
+                                fit: BoxFit.cover,
+                              ),
+                              artworkBorder: BorderRadius.circular(10),
+                              artworkFit: BoxFit.cover,
+                            )),
                       ),
                     ),
                     SizedBox(height: 30),
@@ -517,6 +517,7 @@ class _SongPageScreenState extends State<SongPageScreen>
                       PageTransition(
                         child: BottomNav(),
                         type: PageTransitionType.topToBottom,
+                        // duration: Duration(seconds: 1)
                       ),
                     );
                   },
