@@ -213,11 +213,10 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         IconButton(
                           onPressed: () {
                             // Delay the state change to avoid setState during build exception
-                            Future.delayed(Duration.zero, () {
-                              // favouriteController.removeFav(
-                              //     title: favourite['title']);
-                              // setState(() {});
-                            });
+
+                            favouriteController.deleteData(index);
+
+                            setState(() {});
                           },
                           icon: Icon(Icons.delete_outlined),
                         ),

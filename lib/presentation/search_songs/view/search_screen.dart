@@ -377,6 +377,7 @@
 //     );
 //   }
 // }
+import 'package:Banjo/global_widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -420,7 +421,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Navigator.pushAndRemoveUntil(
               context,
               PageTransition(
-                child: SongPageScreen(),
+                child: BottomNav(),
                 type: PageTransitionType.topToBottom,
               ),
               (route) => false,

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:Banjo/presentation/all_songs_screen/view/all_songs_screen.dart';
+import 'package:Banjo/presentation/play_list_screen/view/playlist_screen.dart';
 import 'package:Banjo/presentation/settings_screen/view/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:Banjo/core/constants/color.dart';
@@ -19,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   List pages = [
     HomePageScreen(),
     AllSongsScreen(),
-    SettingScreen(),
+    PlayListScreen(),
     FavouriteScreen()
   ];
   @override

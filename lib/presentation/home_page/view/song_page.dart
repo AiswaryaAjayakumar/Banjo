@@ -304,6 +304,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:Banjo/global_widgets/bottom_nav.dart';
+import 'package:Banjo/presentation/favourite_page/controller/favourites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -439,8 +440,16 @@ class _SongPageScreenState extends State<SongPageScreen>
                       children: [
                         IconButton(
                           onPressed: () {
-                            songPlayerController.isFav.value =
-                                !songPlayerController.isFav.value;
+                    songPlayerController.isFav.value = !songPlayerController.isFav.value;
+                    if (songPlayerController.isFav.value) {
+                      FavouriteController().addFav(
+                        title: songPlayerController.songTitle.value,
+                        artist: songPlayerController.songArtist.value,
+                      );
+                    } else {
+      // Optionally, you can remove the song from favorites if needed
+      // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
+                            }
                           },
                           icon: Obx(
                             () => Icon(

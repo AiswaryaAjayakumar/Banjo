@@ -103,8 +103,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                 width: constraints.maxWidth,
                                 child: Text(
                                   widget.artist,
-                                  // overflow: TextOverflow.ellipsis,
-                                  // maxLines: 1,
+                                 // overflow: TextOverflow.ellipsis,
+                                 // maxLines: 1,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: ColorConstants.customWhite1,
