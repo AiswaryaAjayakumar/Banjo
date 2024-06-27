@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CustomBottomSheet extends StatefulWidget {
   const CustomBottomSheet(
@@ -103,8 +104,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                                 width: constraints.maxWidth,
                                 child: Text(
                                   widget.artist,
-                                 // overflow: TextOverflow.ellipsis,
-                                 // maxLines: 1,
+                                  // overflow: TextOverflow.ellipsis,
+                                  // maxLines: 1,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: ColorConstants.customWhite1,
@@ -128,22 +129,24 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                 SizedBox(
                   height: 20,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Row(
-                    children: [
-                      Icon(Icons.share_sharp,
-                          size: 25, color: ColorConstants.customWhite1),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
+                Row(
+                  children: [
+                    Icon(Icons.share_sharp,
+                        size: 25, color: ColorConstants.customWhite1),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Share.share("${widget.songName}\n" "${widget.songId}");
+                      },
+                      child: Text(
                         "Share",
                         style: TextStyle(
                             fontSize: 17, color: ColorConstants.customWhite1),
                       ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: 20,

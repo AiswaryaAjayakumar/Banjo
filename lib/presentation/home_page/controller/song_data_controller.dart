@@ -74,103 +74,8 @@
 
 // ignore_for_file: avoid_print, invalid_use_of_protected_member, avoid_function_literals_in_foreach_calls, unnecessary_import
 
-// import 'package:get/get.dart';
-// import 'package:get/state_manager.dart';
-// import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
-// import 'package:on_audio_query/on_audio_query.dart';
-// import 'package:permission_handler/permission_handler.dart';
-
-// class SongDataController extends GetxController {
-//   SongPlayerController songPlayerController = Get.put(SongPlayerController());
-
-//   final audioQuery = OnAudioQuery();
-
-//   RxList<SongModel> songList = <SongModel>[].obs;
-//   RxBool isDeviceSongs = false.obs;
-//   RxInt currentSongIndex = 0.obs;
-//   RxString searchQuery = ''.obs;
-//   RxList<SongModel> filteredSongs = <SongModel>[].obs;
-
-//   @override
-//   void onInit() {
-//     super.onInit();
-//     storagePermission();
-//   }
-
-//   void getLocalSongs() async {
-//     songList.value = await audioQuery.querySongs(
-//       ignoreCase: true,
-//       orderType: OrderType.ASC_OR_SMALLER,
-//       sortType: null,
-//       uriType: UriType.EXTERNAL,
-//     );
-//     isDeviceSongs.value = songList.isNotEmpty;
-//     filteredSongs.assignAll(songList); // Initialize filteredSongs with all songs
-//   }
-
-//   Future<void> storagePermission() async {
-//     try {
-//       var permission = await Permission.storage.request();
-//       if (permission.isGranted) {
-//         print("Permission granted");
-//         getLocalSongs();
-//       } else {
-//         print("Permission denied");
-//         Permission.storage.request();
-//       }
-//     } catch (exception) {
-//       print(exception);
-//     }
-//   }
-
-//   void currentIndex(int songId) {
-//     var index = 0;
-//     songList.forEach((element) {
-//       if (element.id == songId) {
-//         currentSongIndex.value = index;
-//       }
-//       index++;
-//     });
-//   }
-
-//   void nextSongPlay() {
-//     if (currentSongIndex.value < filteredSongs.length - 1) {
-//       currentSongIndex.value++;
-//       SongModel next = filteredSongs[currentSongIndex.value];
-//       songPlayerController.playLocalAudio(next);
-//     }
-//   }
-
-//   void previousSongPlay() {
-//     if (currentSongIndex.value > 0) {
-//       currentSongIndex.value--;
-//       SongModel previous = filteredSongs[currentSongIndex.value];
-//       songPlayerController.playLocalAudio(previous);
-//     }
-//   }
-
-//   void setSearchQuery(String query) {
-//     searchQuery.value = query.toLowerCase();
-//     filterSongs();
-//   }
-
-//   void filterSongs() {
-//     if (searchQuery.isEmpty) {
-//       filteredSongs.assignAll(songList);
-//     } else {
-//       List<SongModel> tempList = [];
-//       songList.forEach((song) {
-//         if (song.title.toLowerCase().contains(searchQuery.value) ||
-//             song.artist!.toLowerCase().contains(searchQuery.value)) {
-//           tempList.add(song);
-//         }
-//       });
-//       filteredSongs.assignAll(tempList);
-//     }
-//   }
-// }
-
 import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -185,7 +90,6 @@ class SongDataController extends GetxController {
   RxInt currentSongIndex = 0.obs;
   RxString searchQuery = ''.obs;
   RxList<SongModel> filteredSongs = <SongModel>[].obs;
-  RxList<SongModel> recentlyPlayedSongs = <SongModel>[].obs; // Recently played songs list
 
   @override
   void onInit() {
@@ -234,7 +138,6 @@ class SongDataController extends GetxController {
       currentSongIndex.value++;
       SongModel next = filteredSongs[currentSongIndex.value];
       songPlayerController.playLocalAudio(next);
-      addRecentlyPlayedSong(next); // Add song to recently played
     }
   }
 
@@ -243,7 +146,6 @@ class SongDataController extends GetxController {
       currentSongIndex.value--;
       SongModel previous = filteredSongs[currentSongIndex.value];
       songPlayerController.playLocalAudio(previous);
-      addRecentlyPlayedSong(previous); // Add song to recently played
     }
   }
 
@@ -264,16 +166,6 @@ class SongDataController extends GetxController {
         }
       });
       filteredSongs.assignAll(tempList);
-    }
-  }
-
-  void addRecentlyPlayedSong(SongModel song) {
-    if (recentlyPlayedSongs.contains(song)) {
-      recentlyPlayedSongs.remove(song);
-    }
-    recentlyPlayedSongs.insert(0, song);
-    if (recentlyPlayedSongs.length > 10) {
-      recentlyPlayedSongs.removeLast(); // Keep only the last 10 songs
     }
   }
 }

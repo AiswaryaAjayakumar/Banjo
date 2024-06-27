@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
-                      "https://images.pexels.com/photos/3756851/pexels-photo-3756851.jpeg?auto=compress&cs=tinysrgb&w=800"),
+                      "assets/images/Default_Prompt_Design_a_3D_effect_logo_The_logo_should_promin_1.jpg"),
                   fit: BoxFit.cover)),
         ),
         Positioned(

@@ -440,15 +440,16 @@ class _SongPageScreenState extends State<SongPageScreen>
                       children: [
                         IconButton(
                           onPressed: () {
-                    songPlayerController.isFav.value = !songPlayerController.isFav.value;
-                    if (songPlayerController.isFav.value) {
-                      FavouriteController().addFav(
-                        title: songPlayerController.songTitle.value,
-                        artist: songPlayerController.songArtist.value,
-                      );
-                    } else {
-      // Optionally, you can remove the song from favorites if needed
-      // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
+                            songPlayerController.isFav.value =
+                                !songPlayerController.isFav.value;
+                            if (songPlayerController.isFav.value) {
+                              FavouriteController().addFav(
+                                  title: songPlayerController.songTitle.value,
+                                  artist: songPlayerController.songArtist.value,
+                                  imgUrl: songPlayerController.imgUrl.value);
+                            } else {
+                              // Optionally, you can remove the song from favorites if needed
+                              // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
                             }
                           },
                           icon: Obx(

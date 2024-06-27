@@ -3,6 +3,7 @@
 import 'package:Banjo/core/constants/color.dart';
 import 'package:Banjo/core/constants/texts.dart';
 import 'package:Banjo/global_widgets/bottom_nav.dart';
+import 'package:Banjo/presentation/add_playlist_screen/view/add_play_list_screen.dart';
 import 'package:Banjo/presentation/play_list_screen/contrller/playlist_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -104,7 +105,11 @@ class _PlayListScreenState extends State<PlayListScreen> {
                   itemCount: playlistController.playlists.length,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(AddPlayListScreen(
+                          
+                        ));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),

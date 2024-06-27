@@ -418,13 +418,12 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pushAndRemoveUntil(
+            Navigator.pushReplacement(
               context,
               PageTransition(
                 child: BottomNav(),
                 type: PageTransitionType.topToBottom,
               ),
-              (route) => false,
             );
           },
           icon: Icon(
