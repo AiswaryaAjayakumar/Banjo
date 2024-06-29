@@ -303,25 +303,268 @@
 //new working code
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
-import 'package:Banjo/global_widgets/bottom_nav.dart';
-import 'package:Banjo/presentation/favourite_page/controller/favourites_controller.dart';
+// import 'package:banjo/global_widgets/bottom_nav.dart';
+// import 'package:banjo/presentation/favourite_page/controller/favourites_controller.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:on_audio_query/on_audio_query.dart';
+// import 'package:page_transition/page_transition.dart';
+// import 'package:banjo/core/constants/color.dart';
+// import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+// import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
+
+// class SongPageScreen extends StatefulWidget {
+//   const SongPageScreen({Key? key, this.details, this.songData})
+//       : super(key: key);
+
+//   final SongModel? details;
+//   final Map? songData;
+
+//   @override
+//   State<SongPageScreen> createState() => _SongPageScreenState();
+// }
+
+// class _SongPageScreenState extends State<SongPageScreen>
+//     with SingleTickerProviderStateMixin {
+//   final SongPlayerController songPlayerController =
+//       Get.put(SongPlayerController());
+//   final SongDataController songDataController = Get.put(SongDataController());
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         child: Stack(
+//           children: [
+//             Container(
+//               height: MediaQuery.of(context).size.height,
+//               decoration: BoxDecoration(
+//                 gradient: LinearGradient(
+//                   begin: Alignment.topRight,
+//                   end: Alignment.topLeft,
+//                   colors: [
+//                     ColorConstants.blackColorLogo1,
+//                     ColorConstants.blackColorLogo2,
+//                   ],
+//                 ),
+//               ),
+//               child: Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 20),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     Center(
+//                       child: Container(
+//                         height: MediaQuery.of(context).size.height / 2,
+//                         width: MediaQuery.of(context).size.width,
+//                         decoration: BoxDecoration(
+//                           borderRadius: BorderRadius.circular(10),
+//                         ),
+//                         child: Obx(() => QueryArtworkWidget(
+//                               id: songPlayerController
+//                                       .currentSongDetails.value?.id ??
+//                                   0,
+//                               type: ArtworkType.AUDIO,
+//                               nullArtworkWidget: Image.asset(
+//                                 "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png",
+//                                 fit: BoxFit.cover,
+//                               ),
+//                               artworkBorder: BorderRadius.circular(10),
+//                               artworkFit: BoxFit.cover,
+//                             )),
+//                       ),
+//                     ),
+//                     SizedBox(height: 30),
+//                     Obx(
+//                       () => Text(
+//                         songPlayerController.songTitle.value,
+//                         style: TextStyle(
+//                           color: ColorConstants.copperColorLogo1,
+//                           fontSize: 20,
+//                           fontWeight: FontWeight.bold,
+//                         ),
+//                         overflow: TextOverflow.ellipsis,
+//                       ),
+//                     ),
+//                     Obx(
+//                       () => Text(
+//                         songPlayerController.songArtist.value,
+//                         style: TextStyle(
+//                           color: ColorConstants.customWhite1,
+//                           fontSize: 16,
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(height: 25),
+//                     Obx(
+//                       () => Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Text(
+//                             songPlayerController.currentTime.value,
+//                             style: TextStyle(color: ColorConstants.customWhite),
+//                           ),
+//                           Expanded(
+//                             child: Slider(
+//                               inactiveColor: ColorConstants.customGrey,
+//                               activeColor: ColorConstants.copperColorLogo1,
+//                               value:
+//                                   songPlayerController.sliderValue.value.clamp(
+//                                 0.0,
+//                                 songPlayerController.sliderMaxValue.value,
+//                               ),
+//                               onChanged: (value) {
+//                                 songPlayerController.sliderValue.value = value;
+//                                 Duration songPosition =
+//                                     Duration(seconds: value.toInt());
+//                                 songPlayerController.sliderChange(songPosition);
+//                               },
+//                               min: 0,
+//                               max: songPlayerController.sliderMaxValue.value,
+//                             ),
+//                           ),
+//                           Text(
+//                             songPlayerController.totalTime.value,
+//                             style: TextStyle(color: ColorConstants.customWhite),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                     SizedBox(height: 20),
+//                     Row(
+//                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                       children: [
+//                         IconButton(
+//                           onPressed: () {
+//                             songPlayerController.isFav.value =
+//                                 !songPlayerController.isFav.value;
+//                             if (songPlayerController.isFav.value) {
+//                               FavouriteController().addFav(
+//                                   title: songPlayerController.songTitle.value,
+//                                   artist: songPlayerController.songArtist.value,
+//                                   imgUrl: songPlayerController.imgUrl.value
+//                                   );
+//                             } else {
+//                               // Optionally, you can remove the song from favorites if needed
+//                               // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
+//                             }
+//                           },
+//                           icon: Obx(
+//                             () => Icon(
+//                               Icons.favorite,
+//                               size: 40,
+//                               color: songPlayerController.isFav.value
+//                                   ? ColorConstants.copperColorLogo1
+//                                   : ColorConstants.customWhite1,
+//                             ),
+//                           ),
+//                         ),
+//                         IconButton(
+//                           onPressed: () {
+//                             songDataController.previousSongPlay();
+//                           },
+//                           icon: Icon(Icons.skip_previous,
+//                               size: 40, color: ColorConstants.customWhite1),
+//                         ),
+//                         Obx(
+//                           () => IconButton(
+//                             onPressed: () {
+//                               if (songPlayerController.isPlaying.value) {
+//                                 songPlayerController.pausePlaying();
+//                               } else {
+//                                 songPlayerController.resumePlaying();
+//                               }
+//                             },
+//                             icon: Icon(
+//                               songPlayerController.isPlaying.value
+//                                   ? Icons.pause
+//                                   : Icons.play_arrow,
+//                               size: 40,
+//                               color: ColorConstants.customWhite1,
+//                             ),
+//                           ),
+//                         ),
+//                         IconButton(
+//                           onPressed: () {
+//                             songDataController.nextSongPlay();
+//                           },
+//                           icon: Icon(Icons.skip_next,
+//                               size: 40, color: ColorConstants.customWhite1),
+//                         ),
+//                         IconButton(
+//                           onPressed: () {
+//                             songPlayerController.repeatSong();
+//                           },
+//                           icon: Obx(
+//                             () => Icon(
+//                               Icons.refresh_outlined,
+//                               size: 40,
+//                               color: songPlayerController.isRepeat.value
+//                                   ? ColorConstants.copperColorLogo1
+//                                   : ColorConstants.customWhite1,
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             Positioned(
+//               top: 6,
+//               child: CircleAvatar(
+//                 radius: 25,
+//                 backgroundColor: Colors.transparent,
+//                 child: IconButton(
+//                   color: ColorConstants.customWhite,
+//                   onPressed: () {
+//                     Navigator.pushReplacement(
+//                       context,
+//                       PageTransition(
+//                         child: BottomNav(),
+//                         type: PageTransitionType.topToBottom,
+//                         // duration: Duration(seconds: 1)
+//                       ),
+//                     );
+//                   },
+//                   icon: Icon(
+//                     Icons.keyboard_arrow_down,
+//                     size: 30,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+import 'package:banjo/global_widgets/bottom_nav.dart';
+import 'package:banjo/presentation/add_playlist_screen/view/add_play_list_screen.dart';
+import 'package:banjo/presentation/favourite_page/controller/favourites_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:page_transition/page_transition.dart';
-
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
-import 'package:Banjo/presentation/home_page/view/home_page.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
 
 class SongPageScreen extends StatefulWidget {
-  const SongPageScreen({Key? key, this.details, this.songData})
+  const SongPageScreen(
+      {Key? key,
+      this.details,
+      this.songData,
+      this.fromAddPlaylistScreen = false})
       : super(key: key);
 
   final SongModel? details;
   final Map? songData;
+  final bool fromAddPlaylistScreen;
 
   @override
   State<SongPageScreen> createState() => _SongPageScreenState();
@@ -335,210 +578,246 @@ class _SongPageScreenState extends State<SongPageScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.topLeft,
-                  colors: [
-                    ColorConstants.blackColorLogo1,
-                    ColorConstants.blackColorLogo2,
-                  ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (widget.fromAddPlaylistScreen) {
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              child: AddPlayListScreen(),
+              type: PageTransitionType.topToBottom,
+            ),
+          );
+        } else {
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              child: BottomNav(),
+              type: PageTransitionType.topToBottom,
+            ),
+          );
+        }
+        return Future.value(false);
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.topLeft,
+                    colors: [
+                      ColorConstants.blackColorLogo1,
+                      ColorConstants.blackColorLogo2,
+                    ],
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 2,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Obx(() => QueryArtworkWidget(
-                              id: songPlayerController
-                                      .currentSongDetails.value?.id ??
-                                  0,
-                              type: ArtworkType.AUDIO,
-                              nullArtworkWidget: Image.asset(
-                                "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png",
-                                fit: BoxFit.cover,
-                              ),
-                              artworkBorder: BorderRadius.circular(10),
-                              artworkFit: BoxFit.cover,
-                            )),
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Obx(
-                      () => Text(
-                        songPlayerController.songTitle.value,
-                        style: TextStyle(
-                          color: ColorConstants.copperColorLogo1,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Obx(
-                      () => Text(
-                        songPlayerController.songArtist.value,
-                        style: TextStyle(
-                          color: ColorConstants.customWhite1,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                    Obx(
-                      () => Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            songPlayerController.currentTime.value,
-                            style: TextStyle(color: ColorConstants.customWhite),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 1.8,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Expanded(
-                            child: Slider(
-                              inactiveColor: ColorConstants.customGrey,
-                              activeColor: ColorConstants.copperColorLogo1,
-                              value:
-                                  songPlayerController.sliderValue.value.clamp(
-                                0.0,
-                                songPlayerController.sliderMaxValue.value,
+                          child: Obx(() => QueryArtworkWidget(
+                                id: songPlayerController
+                                        .currentSongDetails.value?.id ??
+                                    0,
+                                type: ArtworkType.AUDIO,
+                                nullArtworkWidget: Image.asset(
+                                  "assets/images/Screenshot 2024-06-24 at 12.56.36 PM.png",
+                                  fit: BoxFit.cover,
+                                ),
+                                artworkBorder: BorderRadius.circular(10),
+                                artworkFit: BoxFit.cover,
+                              )),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      Obx(
+                        () => Text(
+                          songPlayerController.songTitle.value,
+                          style: TextStyle(
+                            color: ColorConstants.copperColorLogo1,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Obx(
+                        () => Text(
+                          songPlayerController.songArtist.value,
+                          style: TextStyle(
+                            color: ColorConstants.customWhite1,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 25),
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              songPlayerController.currentTime.value,
+                              style:
+                                  TextStyle(color: ColorConstants.customWhite),
+                            ),
+                            Expanded(
+                              child: Slider(
+                                inactiveColor: ColorConstants.customGrey,
+                                activeColor: ColorConstants.copperColorLogo1,
+                                value: songPlayerController.sliderValue.value
+                                    .clamp(
+                                  0.0,
+                                  songPlayerController.sliderMaxValue.value,
+                                ),
+                                onChanged: (value) {
+                                  songPlayerController.sliderValue.value =
+                                      value;
+                                  Duration songPosition =
+                                      Duration(seconds: value.toInt());
+                                  songPlayerController
+                                      .sliderChange(songPosition);
+                                },
+                                min: 0,
+                                max: songPlayerController.sliderMaxValue.value,
                               ),
-                              onChanged: (value) {
-                                songPlayerController.sliderValue.value = value;
-                                Duration songPosition =
-                                    Duration(seconds: value.toInt());
-                                songPlayerController.sliderChange(songPosition);
-                              },
-                              min: 0,
-                              max: songPlayerController.sliderMaxValue.value,
+                            ),
+                            Text(
+                              songPlayerController.totalTime.value,
+                              style:
+                                  TextStyle(color: ColorConstants.customWhite),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              songPlayerController.isFav.value =
+                                  !songPlayerController.isFav.value;
+                              if (songPlayerController.isFav.value) {
+                                FavouriteController().addFav(
+                                    title: songPlayerController.songTitle.value,
+                                    artist:
+                                        songPlayerController.songArtist.value,
+                                    imgUrl: songPlayerController.imgUrl.value);
+                              } else {
+                                // Optionally, you can remove the song from favorites if needed
+                                // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
+                              }
+                            },
+                            icon: Obx(
+                              () => Icon(
+                                Icons.favorite,
+                                size: 40,
+                                color: songPlayerController.isFav.value
+                                    ? ColorConstants.copperColorLogo1
+                                    : ColorConstants.customWhite1,
+                              ),
                             ),
                           ),
-                          Text(
-                            songPlayerController.totalTime.value,
-                            style: TextStyle(color: ColorConstants.customWhite),
+                          IconButton(
+                            onPressed: () {
+                              songDataController.previousSongPlay();
+                            },
+                            icon: Icon(Icons.skip_previous,
+                                size: 40, color: ColorConstants.customWhite1),
+                          ),
+                          Obx(
+                            () => IconButton(
+                              onPressed: () {
+                                if (songPlayerController.isPlaying.value) {
+                                  songPlayerController.pausePlaying();
+                                } else {
+                                  songPlayerController.resumePlaying();
+                                }
+                              },
+                              icon: Icon(
+                                songPlayerController.isPlaying.value
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
+                                size: 40,
+                                color: ColorConstants.customWhite1,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              songDataController.nextSongPlay();
+                            },
+                            icon: Icon(Icons.skip_next,
+                                size: 40, color: ColorConstants.customWhite1),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              songPlayerController.repeatSong();
+                            },
+                            icon: Obx(
+                              () => Icon(
+                                Icons.refresh_outlined,
+                                size: 40,
+                                color: songPlayerController.isRepeat.value
+                                    ? ColorConstants.copperColorLogo1
+                                    : ColorConstants.customWhite1,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            songPlayerController.isFav.value =
-                                !songPlayerController.isFav.value;
-                            if (songPlayerController.isFav.value) {
-                              FavouriteController().addFav(
-                                  title: songPlayerController.songTitle.value,
-                                  artist: songPlayerController.songArtist.value,
-                                  imgUrl: songPlayerController.imgUrl.value);
-                            } else {
-                              // Optionally, you can remove the song from favorites if needed
-                              // FavouriteController().removeFav(title: songPlayerController.songTitle.value);
-                            }
-                          },
-                          icon: Obx(
-                            () => Icon(
-                              Icons.favorite,
-                              size: 40,
-                              color: songPlayerController.isFav.value
-                                  ? ColorConstants.copperColorLogo1
-                                  : ColorConstants.customWhite1,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            songDataController.previousSongPlay();
-                          },
-                          icon: Icon(Icons.skip_previous,
-                              size: 40, color: ColorConstants.customWhite1),
-                        ),
-                        Obx(
-                          () => IconButton(
-                            onPressed: () {
-                              if (songPlayerController.isPlaying.value) {
-                                songPlayerController.pausePlaying();
-                              } else {
-                                songPlayerController.resumePlaying();
-                              }
-                            },
-                            icon: Icon(
-                              songPlayerController.isPlaying.value
-                                  ? Icons.pause
-                                  : Icons.play_arrow,
-                              size: 40,
-                              color: ColorConstants.customWhite1,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            songDataController.nextSongPlay();
-                          },
-                          icon: Icon(Icons.skip_next,
-                              size: 40, color: ColorConstants.customWhite1),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            songPlayerController.repeatSong();
-                          },
-                          icon: Obx(
-                            () => Icon(
-                              Icons.refresh_outlined,
-                              size: 40,
-                              color: songPlayerController.isRepeat.value
-                                  ? ColorConstants.copperColorLogo1
-                                  : ColorConstants.customWhite1,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              top: 6,
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: Colors.transparent,
-                child: IconButton(
-                  color: ColorConstants.customWhite,
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                        child: BottomNav(),
-                        type: PageTransitionType.topToBottom,
-                        // duration: Duration(seconds: 1)
-                      ),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 30,
+                    ],
                   ),
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                top: 6,
+                child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.transparent,
+                  child: IconButton(
+                    color: ColorConstants.customWhite,
+                    onPressed: () {
+                      if (widget.fromAddPlaylistScreen) {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                            child: AddPlayListScreen(),
+                            type: PageTransitionType.topToBottom,
+                          ),
+                        );
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                            child: BottomNav(),
+                            type: PageTransitionType.topToBottom,
+                          ),
+                        );
+                      }
+                    },
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

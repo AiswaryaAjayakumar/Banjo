@@ -150,15 +150,15 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 //new working code
-import 'package:Banjo/presentation/home_page/view/song_page.dart';
+import 'package:banjo/presentation/home_page/view/song_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:page_transition/page_transition.dart';
 

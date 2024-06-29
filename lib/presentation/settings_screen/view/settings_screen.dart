@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/settings_screen/view/privacy_policy.dart';
-import 'package:Banjo/presentation/settings_screen/view/terms_and_condition.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/global_widgets/bottom_nav.dart';
+import 'package:banjo/presentation/settings_screen/view/privacy_policy.dart';
+import 'package:banjo/presentation/settings_screen/view/terms_and_condition.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -16,7 +17,11 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: ColorConstants.blackColorLogo1,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BottomNav(),
+                ));
           },
           icon: Icon(
             Icons.arrow_back,

@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:Banjo/presentation/play_list_screen/view/playlist_screen.dart';
-import 'package:Banjo/presentation/recently_played_screen/view/recently_played_screen.dart';
-import 'package:Banjo/presentation/settings_screen/view/settings_screen.dart';
+import 'package:banjo/presentation/play_list_screen/view/playlist_screen.dart';
+import 'package:banjo/presentation/recently_played_screen/view/recently_played_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/favourite_page/view/favourite_page.dart';
-import 'package:Banjo/presentation/home_page/view/home_page.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/favourite_page/view/favourite_page.dart';
+import 'package:banjo/presentation/home_page/view/home_page.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -17,7 +16,7 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int indexNum = 0;
-  List pages = [HomePageScreen(), RecentlyPlayedScreen(), FavouriteScreen()];
+  List pages = [HomePageScreen(), PlayListScreen(), FavouriteScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

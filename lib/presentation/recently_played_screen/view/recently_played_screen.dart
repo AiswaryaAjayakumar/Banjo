@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
 
 class RecentlyPlayedScreen extends StatefulWidget {
   const RecentlyPlayedScreen({Key? key}) : super(key: key);

@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
-import 'package:Banjo/core/constants/texts.dart';
-import 'package:Banjo/global_widgets/bottom_nav.dart';
-import 'package:Banjo/presentation/home_page/view/home_page.dart';
+
+import 'package:banjo/core/constants/texts.dart';
+import 'package:banjo/global_widgets/bottom_nav.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

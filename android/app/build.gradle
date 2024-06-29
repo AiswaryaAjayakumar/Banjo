@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    
 }
 
 def localProperties = new Properties()
@@ -59,6 +60,7 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+        
     }
 }
 
@@ -67,8 +69,6 @@ flutter {
 }
 
 dependencies {
-    implementation 'androidx.multidex:multidex:2.0.1'
+    
 }
-configurations.implementation {
-exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
-}
+

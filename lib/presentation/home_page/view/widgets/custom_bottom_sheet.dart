@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

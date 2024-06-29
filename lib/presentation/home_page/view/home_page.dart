@@ -525,18 +525,17 @@
 //   }
 // }
 
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/core/constants/texts.dart';
-import 'package:Banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
-import 'package:Banjo/presentation/home_page/view/widgets/cutom_cards.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/core/constants/texts.dart';
+import 'package:banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/controller/song_player_controller.dart';
-import 'package:Banjo/presentation/home_page/view/song_page.dart';
-import 'package:Banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
-import 'package:Banjo/presentation/search_songs/view/search_screen.dart';
-import 'package:Banjo/presentation/settings_screen/view/settings_screen.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
+import 'package:banjo/presentation/home_page/view/song_page.dart';
+import 'package:banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
+import 'package:banjo/presentation/search_songs/view/search_screen.dart';
+import 'package:banjo/presentation/settings_screen/view/settings_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomePageScreen extends StatefulWidget {

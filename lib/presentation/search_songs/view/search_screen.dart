@@ -377,14 +377,14 @@
 //     );
 //   }
 // }
-import 'package:Banjo/global_widgets/bottom_nav.dart';
+import 'package:banjo/global_widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/view/home_page.dart';
-import 'package:Banjo/presentation/home_page/view/song_page.dart';
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+
+import 'package:banjo/presentation/home_page/view/song_page.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SearchScreen extends StatefulWidget {

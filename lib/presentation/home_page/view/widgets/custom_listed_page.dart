@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 //new working code
 
-import 'dart:math';
 
-import 'package:Banjo/core/constants/color.dart';
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
-import 'package:Banjo/presentation/home_page/view/widgets/custom_bottom_sheet.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:banjo/core/constants/color.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/view/widgets/custom_bottom_sheet.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

@@ -198,7 +198,7 @@
 //   }
 // }
 
-import 'package:Banjo/presentation/home_page/controller/song_data_controller.dart';
+import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';

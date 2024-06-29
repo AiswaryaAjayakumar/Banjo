@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:Banjo/core/constants/color.dart';
+
+import 'package:banjo/core/constants/color.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionScreen extends StatelessWidget {
