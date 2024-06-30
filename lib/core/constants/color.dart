@@ -24,4 +24,5 @@ class ColorConstants {
   static Color blackColorLogo2 = Color.fromARGB(255, 55, 54, 54);
   static Color copperColorLogo2 = Color.fromARGB(255, 246, 206, 194);
   static Color goldColorLogo2 = Color(0xFFd5c28f);
+  static Color customRed = const Color.fromARGB(255, 168, 17, 6);
 }

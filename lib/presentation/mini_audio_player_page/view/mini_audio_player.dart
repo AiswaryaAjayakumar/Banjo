@@ -190,168 +190,163 @@ class _MiniAudioPlayerScreenState extends State<MiniAudioPlayerScreen> {
           ),
         );
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: ColorConstants.blackColorLogo2,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: ColorConstants.blackColorLogo2,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Obx(() => Row(
-                            children: [
-                              QueryArtworkWidget(
-                                id: songPlayerController
-                                        .currentSongDetails.value?.id ??
-                                    0,
-                                type: ArtworkType.AUDIO,
-                                nullArtworkWidget: CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor:
-                                      ColorConstants.copperColorLogo1,
-                                  child: Icon(
-                                    Icons.music_note_outlined,
-                                    size: 20,
-                                    color: Colors.white,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Obx(() => Row(
+                          children: [
+                            QueryArtworkWidget(
+                              id: songPlayerController
+                                      .currentSongDetails.value?.id ??
+                                  0,
+                              type: ArtworkType.AUDIO,
+                              nullArtworkWidget: CircleAvatar(
+                                radius: 18,
+                                backgroundColor:
+                                    ColorConstants.copperColorLogo1,
+                                child: Icon(
+                                  Icons.music_note_outlined,
+                                  size: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              artworkBorder: BorderRadius.circular(10),
+                              artworkFit: BoxFit.cover,
+                            ),
+                            SizedBox(width: 18),
+                            Expanded(
+                              flex: 4,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      songPlayerController.songTitle.value,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: ColorConstants.copperColorLogo1,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                artworkBorder: BorderRadius.circular(10),
-                                artworkFit: BoxFit.cover,
-                              ),
-                              SizedBox(width: 18),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        songPlayerController.songTitle.value,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color:
-                                              ColorConstants.copperColorLogo1,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                  Flexible(
+                                    child: Text(
+                                      songPlayerController.songArtist.value,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: ColorConstants.copperColorLogo2,
                                       ),
                                     ),
-                                    Flexible(
-                                      child: Text(
-                                        songPlayerController.songArtist.value,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color:
-                                              ColorConstants.copperColorLogo2,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          )),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        songDataController.previousSongPlay();
-                      },
-                      icon: Icon(
-                        Icons.skip_previous,
-                        size: 30,
-                        color: ColorConstants.customWhite1,
-                      ),
-                    ),
-                    Obx(
-                      () => InkWell(
-                        onTap: () {
-                          if (songPlayerController.isPlaying.value) {
-                            songPlayerController.pausePlaying();
-                            // aniController.stop();  // Uncomment if using animation
-                          } else {
-                            songPlayerController.resumePlaying();
-                            // aniController.repeat();  // Uncomment if using animation
-                          }
-                        },
-                        child: CircleAvatar(
-                          radius: 15,
-                          backgroundColor: ColorConstants.customWhite1,
-                          child: Icon(
-                            songPlayerController.isPlaying.value
-                                ? Icons.pause
-                                : Icons.play_arrow,
-                            color: ColorConstants.customGrey1,
-                          ),
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        songDataController.nextSongPlay();
-                      },
-                      icon: Icon(
-                        Icons.skip_next,
-                        size: 30,
-                        color: ColorConstants.customWhite1,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        songPlayerController.isSongLoaded.value = false;
-                        songPlayerController.pausePlaying();
-                      },
-                      icon: Icon(
-                        Icons.close_outlined,
-                        color: ColorConstants.customGrey,
-                        size: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                SliderTheme(
-                  data: SliderThemeData(
-                    trackHeight: 1, // Adjust track height
-                    thumbShape: RoundSliderThumbShape(
-                      enabledThumbRadius: 0.0, // Adjust thumb radius
-                    ),
-                    overlayShape: RoundSliderOverlayShape(
-                      overlayRadius: 10.0, // Adjust overlay radius
-                    ),
-                    // Other properties you can customize:
+                            ),
+                          ],
+                        )),
                   ),
-                  child: Obx(() => Slider(
-                        inactiveColor: ColorConstants.customGrey,
-                        activeColor: ColorConstants.copperColorLogo1,
-                        value: songPlayerController.sliderValue.value.clamp(
-                          0.0,
-                          songPlayerController.sliderMaxValue.value,
+                  IconButton(
+                    onPressed: () {
+                      songDataController.previousSongPlay();
+                    },
+                    icon: Icon(
+                      Icons.skip_previous,
+                      size: 30,
+                      color: ColorConstants.customWhite1,
+                    ),
+                  ),
+                  Obx(
+                    () => InkWell(
+                      onTap: () {
+                        if (songPlayerController.isPlaying.value) {
+                          songPlayerController.pausePlaying();
+                          // aniController.stop();  // Uncomment if using animation
+                        } else {
+                          songPlayerController.resumePlaying();
+                          // aniController.repeat();  // Uncomment if using animation
+                        }
+                      },
+                      child: CircleAvatar(
+                        radius: 15,
+                        backgroundColor: ColorConstants.customWhite1,
+                        child: Icon(
+                          songPlayerController.isPlaying.value
+                              ? Icons.pause
+                              : Icons.play_arrow,
+                          color: ColorConstants.customGrey1,
                         ),
-                        onChanged: (value) {
-                          songPlayerController.sliderValue.value = value;
-                          Duration songPosition =
-                              Duration(seconds: value.toInt());
-                          songPlayerController.sliderChange(songPosition);
-                        },
-                        min: 0,
-                        max: songPlayerController.sliderMaxValue.value,
-                      )),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      songDataController.nextSongPlay();
+                    },
+                    icon: Icon(
+                      Icons.skip_next,
+                      size: 30,
+                      color: ColorConstants.customWhite1,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      songPlayerController.isSongLoaded.value = false;
+                      songPlayerController.pausePlaying();
+                    },
+                    icon: Icon(
+                      Icons.close_outlined,
+                      color: ColorConstants.customGrey,
+                      size: 18,
+                    ),
+                  ),
+                ],
+              ),
+              SliderTheme(
+                data: SliderThemeData(
+                  trackHeight: 1, // Adjust track height
+                  thumbShape: RoundSliderThumbShape(
+                    enabledThumbRadius: 0.0, // Adjust thumb radius
+                  ),
+                  overlayShape: RoundSliderOverlayShape(
+                    overlayRadius: 10.0, // Adjust overlay radius
+                  ),
+                  // Other properties you can customize:
                 ),
-              ],
-            ),
+                child: Obx(() => Slider(
+                      inactiveColor: ColorConstants.customGrey,
+                      activeColor: ColorConstants.copperColorLogo1,
+                      value: songPlayerController.sliderValue.value.clamp(
+                        0.0,
+                        songPlayerController.sliderMaxValue.value,
+                      ),
+                      onChanged: (value) {
+                        songPlayerController.sliderValue.value = value;
+                        Duration songPosition =
+                            Duration(seconds: value.toInt());
+                        songPlayerController.sliderChange(songPosition);
+                      },
+                      min: 0,
+                      max: songPlayerController.sliderMaxValue.value,
+                    )),
+              ),
+            ],
           ),
         ),
       ),

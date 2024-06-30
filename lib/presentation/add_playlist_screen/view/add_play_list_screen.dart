@@ -491,6 +491,8 @@
 
 import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
 import 'package:banjo/presentation/home_page/view/song_page.dart';
+import 'package:banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
+import 'package:banjo/presentation/play_list_screen/contrller/playlist_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:banjo/core/constants/color.dart';
@@ -563,103 +565,115 @@ class _AddPlayListScreenState extends State<AddPlayListScreen> {
         child: Icon(Icons.music_note_outlined),
       ),
       body: Obx(() {
-        return ListView.builder(
-          itemCount: selectedSongs.length,
-          itemBuilder: (context, index) {
-            final song = selectedSongs[index];
-            return InkWell(
-              onTap: () {
-                songPlayerController.playLocalAudio(song);
-                Get.to(() => SongPageScreen(
-                      details: song,
-                      fromAddPlaylistScreen: true,
-                    ));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border(
-                    bottom: BorderSide(
-                      color: ColorConstants.copperColorLogo2,
+        return Stack(children: [
+          ListView.builder(
+            itemCount: selectedSongs.length,
+            itemBuilder: (context, index) {
+              final song = selectedSongs[index];
+              return InkWell(
+                onTap: () {
+                  songPlayerController.playLocalAudio(song);
+                  Get.to(() => SongPageScreen(
+                        details: song,
+                        fromAddPlaylistScreen: true,
+                      ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: ColorConstants.copperColorLogo2,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 25,
+                          backgroundColor: ColorConstants.copperColorLogo1,
+                          child: QueryArtworkWidget(
+                            id: song.id,
+                            type: ArtworkType.AUDIO,
+                            nullArtworkWidget: Icon(
+                              Icons.music_note_outlined,
+                              color: ColorConstants.customWhite,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return Container(
+                                    width: constraints.maxWidth,
+                                    child: Text(
+                                      song.title,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        color: ColorConstants.customWhite1,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  return Container(
+                                    width: constraints.maxWidth,
+                                    child: Text(
+                                      song.artist!,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: ColorConstants.customWhite1,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              showBottomSheetOptions(context, song, index);
+                            },
+                            icon: Icon(
+                              Icons.more_vert_outlined,
+                              color: ColorConstants.customWhite1,
+                            ))
+                      ],
                     ),
                   ),
                 ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundColor: ColorConstants.copperColorLogo1,
-                        child: QueryArtworkWidget(
-                          id: song.id,
-                          type: ArtworkType.AUDIO,
-                          nullArtworkWidget: Icon(
-                            Icons.music_note_outlined,
-                            color: ColorConstants.customWhite,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            LayoutBuilder(
-                              builder: (context, constraints) {
-                                return Container(
-                                  width: constraints.maxWidth,
-                                  child: Text(
-                                    song.title,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      color: ColorConstants.customWhite1,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            LayoutBuilder(
-                              builder: (context, constraints) {
-                                return Container(
-                                  width: constraints.maxWidth,
-                                  child: Text(
-                                    song.artist!,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: ColorConstants.customWhite1,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            showBottomSheetOptions(context, song, index);
-                          },
-                          icon: Icon(
-                            Icons.more_vert_outlined,
-                            color: ColorConstants.customWhite1,
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+              );
+            },
+          ),
+          Obx(
+            () => songPlayerController.isSongLoaded.value
+                ? Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: MiniAudioPlayerScreen(),
+                  )
+                : SizedBox.shrink(),
+          ),
+        ]);
       }),
     );
   }

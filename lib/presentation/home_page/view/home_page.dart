@@ -525,6 +525,168 @@
 //   }
 // }
 
+// import 'package:banjo/core/constants/color.dart';
+// import 'package:banjo/core/constants/texts.dart';
+// import 'package:banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:banjo/presentation/home_page/controller/song_data_controller.dart';
+// import 'package:banjo/presentation/home_page/controller/song_player_controller.dart';
+// import 'package:banjo/presentation/home_page/view/song_page.dart';
+// import 'package:banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
+// import 'package:banjo/presentation/search_songs/view/search_screen.dart';
+// import 'package:banjo/presentation/settings_screen/view/settings_screen.dart';
+// import 'package:on_audio_query/on_audio_query.dart';
+// import 'package:page_transition/page_transition.dart';
+// import 'package:permission_handler/permission_handler.dart';
+
+// class HomePageScreen extends StatefulWidget {
+//   const HomePageScreen({Key? key}) : super(key: key);
+
+//   @override
+//   State<HomePageScreen> createState() => _HomePageScreenState();
+// }
+
+// class _HomePageScreenState extends State<HomePageScreen> {
+
+//   final SongDataController songDataController = Get.put(SongDataController());
+//   final SongPlayerController songPlayerController =
+//       Get.put(SongPlayerController());
+//   @override
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: ColorConstants.blackColorLogo1,
+//       appBar: AppBar(
+//         backgroundColor: ColorConstants.blackColorLogo1,
+//         leading: Container(
+//           decoration: BoxDecoration(
+//               borderRadius: BorderRadius.circular(20),
+//               image: DecorationImage(
+//                   image: AssetImage("assets/images/bnew.jpeg"),
+//                   fit: BoxFit.cover)),
+//         ),
+//         title: Text(
+//           "Welcome",
+//           style: MytextStyle.customWhiteHeadings8,
+//         ),
+//         actions: [
+//           IconButton(
+//             onPressed: () {
+//               Navigator.pushReplacement(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) => SearchScreen(),
+//                   ));
+//             },
+//             icon: Icon(
+//               Icons.search_outlined,
+//               color: ColorConstants.customWhite1,
+//               size: 28,
+//             ),
+//           ),
+//           Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 10),
+//               child: IconButton(
+//                 onPressed: () {
+//                   Navigator.pushAndRemoveUntil(
+//                       context,
+//                       PageTransition(
+//                           child: SettingScreen(),
+//                           type: PageTransitionType.rightToLeft,
+//                           curve: Curves.bounceOut,
+//                           duration: Duration(seconds: 1)),
+//                       (route) => false);
+//                 },
+//                 icon: Icon(
+//                   Icons.settings,
+//                   size: 28,
+//                   color: ColorConstants.customWhite1,
+//                 ),
+//               ))
+//         ],
+//       ),
+//       body: SafeArea(
+//         child: Stack(
+//           children: [
+//             SingleChildScrollView(
+//               child: Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 10),
+//                 child: Container(
+//                   height: MediaQuery.of(context).size.height,
+//                   decoration:
+//                       BoxDecoration(color: ColorConstants.blackColorLogo1),
+//                   child: SingleChildScrollView(
+//                     child: Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         SizedBox(height: 15),
+//                         Center(
+//                           child: Text(
+//                             "All Songs",
+//                             style: MytextStyle.customWhiteHeadings5,
+//                           ),
+//                         ),
+//                         //  Container(height: 200, child: CustomCardsScreen()),
+//                         SizedBox(height: 20),
+//                         Padding(
+//                           padding: const EdgeInsets.symmetric(horizontal: 4),
+//                           child: Obx(
+//                             () => songDataController.isDeviceSongs.value
+//                                 ? Column(
+//                                     children: [
+//                                       ...songDataController.songList.value
+//                                           .map(
+//                                             (e) => Column(
+//                                               children: [
+//                                                 CustomListedPage(
+//                                                   songName: e.title,
+//                                                   artist: e.artist!,
+//                                                   songId: e.id,
+//                                                   onPressed: () {
+//                                                     songPlayerController
+//                                                         .playLocalAudio(e);
+//                                                     songDataController
+//                                                         .currentIndex(e.id);
+//                                                     Get.to(() => SongPageScreen(
+//                                                         details: e));
+//                                                   },
+//                                                 ),
+//                                                 SizedBox(height: 10),
+//                                               ],
+//                                             ),
+//                                           )
+//                                           .toList(),
+//                                       SizedBox(height: 150),
+//                                     ],
+//                                   )
+//                                 : Container(), // Adjust as needed
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             Obx(
+//               () => songPlayerController.isSongLoaded.value
+//                   ? Positioned(
+//                       bottom: 0,
+//                       left: 0,
+//                       right: 0,
+//                       child: MiniAudioPlayerScreen(),
+//                     )
+//                   : SizedBox.shrink(),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:banjo/core/constants/color.dart';
 import 'package:banjo/core/constants/texts.dart';
 import 'package:banjo/presentation/home_page/view/widgets/custom_listed_page.dart';
@@ -536,6 +698,7 @@ import 'package:banjo/presentation/home_page/view/song_page.dart';
 import 'package:banjo/presentation/mini_audio_player_page/view/mini_audio_player.dart';
 import 'package:banjo/presentation/search_songs/view/search_screen.dart';
 import 'package:banjo/presentation/settings_screen/view/settings_screen.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -551,6 +714,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
       Get.put(SongPlayerController());
 
   @override
+  void initState() {
+    super.initState();
+    songDataController.requestPermissions();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorConstants.blackColorLogo1,
@@ -558,10 +727,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
         backgroundColor: ColorConstants.blackColorLogo1,
         leading: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                  image: AssetImage("assets/images/bnew.jpeg"),
-                  fit: BoxFit.cover)),
+            borderRadius: BorderRadius.circular(20),
+            image: DecorationImage(
+              image: AssetImage("assets/images/bnew.jpeg"),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         title: Text(
           "Welcome",
@@ -571,10 +742,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
           IconButton(
             onPressed: () {
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchScreen(),
-                  ));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchScreen(),
+                ),
+              );
             },
             icon: Icon(
               Icons.search_outlined,
@@ -583,24 +755,27 @@ class _HomePageScreenState extends State<HomePageScreen> {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      PageTransition(
-                          child: SettingScreen(),
-                          type: PageTransitionType.rightToLeft,
-                          curve: Curves.bounceOut,
-                          duration: Duration(seconds: 1)),
-                      (route) => false);
-                },
-                icon: Icon(
-                  Icons.settings,
-                  size: 28,
-                  color: ColorConstants.customWhite1,
-                ),
-              ))
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  PageTransition(
+                    child: SettingScreen(),
+                    type: PageTransitionType.rightToLeft,
+                    curve: Curves.bounceOut,
+                    duration: Duration(seconds: 1),
+                  ),
+                  (route) => false,
+                );
+              },
+              icon: Icon(
+                Icons.settings,
+                size: 28,
+                color: ColorConstants.customWhite1,
+              ),
+            ),
+          ),
         ],
       ),
       body: SafeArea(
@@ -624,7 +799,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             style: MytextStyle.customWhiteHeadings5,
                           ),
                         ),
-                        //  Container(height: 200, child: CustomCardsScreen()),
                         SizedBox(height: 20),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -657,7 +831,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                       SizedBox(height: 150),
                                     ],
                                   )
-                                : Container(), // Adjust as needed
+                                : Center(
+                                    child: Text(
+                                      "No Songs Found",
+                                      style: MytextStyle.customWhiteHeadings3,
+                                    ),
+                                  ),
                           ),
                         ),
                       ],
